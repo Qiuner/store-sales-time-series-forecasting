@@ -10,6 +10,8 @@
 - `version4`: `LightGBM + lag/rolling` 特征版。验证分数好，但后续确认存在多步预测泄漏问题。
 - `version5`: 无泄漏递推版 `LightGBM`。按未来 16 天逐日滚动预测，修复 `version4` 的验证与提交不一致问题。
 - `version6`: 参考 `storesales-1.ipynb` 的 `Darts` 多序列集成方案，复刻 `LightGBM/XGBoost` 多滞后集成与协变量流程。
+  - 思路: `Darts` 多序列建模，`LightGBM/XGBoost` 多滞后集成，结合交易量、油价、促销和节假日协变量
+  - Kaggle public score: `0.38022`
 
 ## Files
 
