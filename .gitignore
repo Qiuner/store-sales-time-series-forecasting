@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+
+# Large competition data
+train.csv
+test.csv
+stores.csv
+oil.csv
+transactions.csv
+holidays_events.csv
+sample_submission.csv
+
+# Generated prediction outputs
+version2/submission_baseline.csv
+version3/submission_calendar_oil.csv
+version4/submission_lgbm.csv
+version5/submission_lgbm_recursive.csv
+version6/submission_darts_ensemble.csv
+version6/submission_darts_lgbm_only.csv
