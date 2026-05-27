@@ -17,3 +17,4 @@ version4/submission_lgbm.csv
 version5/submission_lgbm_recursive.csv
 version6/submission_darts_ensemble.csv
 version6/submission_darts_lgbm_only.csv
+version6_1/submission_darts_weighted_ensemble.csv
