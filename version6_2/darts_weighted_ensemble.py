@@ -19,9 +19,9 @@ from version6.darts_ensemble import (
 )
 
 
-LGBM_WEIGHT = 0.6
-XGB_WEIGHT = 0.4
-OUTPUT_PATH = "version6_1/submission_darts_weighted_ensemble.csv"
+LGBM_WEIGHT = 0.45
+XGB_WEIGHT = 0.55
+OUTPUT_PATH = "version6_2/submission_darts_weighted_ensemble.csv"
 
 
 def main():

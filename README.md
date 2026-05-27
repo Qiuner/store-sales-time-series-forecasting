@@ -13,6 +13,8 @@
   - 思路: `Darts` 多序列建模，`LightGBM/XGBoost` 多滞后集成，结合交易量、油价、促销和节假日协变量
   - Kaggle public score: `0.38022`
 - `version6.1`: 在 `version6` 基础上把最终 `LightGBM/XGBoost` 融合从简单平均改成加权平均，先测试 `0.6 / 0.4` 权重。
+  - Kaggle public score: `0.38041`
+- `version6.2`: 延续 `version6.1` 的加权融合思路，把最终融合权重改成 `0.45 / 0.55`，测试更偏向 `XGBoost` 的组合。
 
 ## Files
 
