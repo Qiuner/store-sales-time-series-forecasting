@@ -4,19 +4,101 @@
 
 ## Versions
 
-- `version1`: 最基础的线性回归基线。使用日期拆分特征、门店编号、商品大类编码和促销数量直接回归销量。
-- `version2`: 基于 `store_nbr + family + dayofweek` 的分层移动平均基线。使用最近 14/28/56 天统计量并加入温和促销修正。
-- `version3`: 在 `version2` 上加入节假日、油价和轻量岭回归校准，测试外部协变量是否带来提升。
-- `version4`: `LightGBM + lag/rolling` 特征版。验证分数好，但后续确认存在多步预测泄漏问题。
-- `version5`: 无泄漏递推版 `LightGBM`。按未来 16 天逐日滚动预测，修复 `version4` 的验证与提交不一致问题。
-- `version6`: 参考 `storesales-1.ipynb` 的 `Darts` 多序列集成方案，复刻 `LightGBM/XGBoost` 多滞后集成与协变量流程。
-  - 思路: `Darts` 多序列建模，`LightGBM/XGBoost` 多滞后集成，结合交易量、油价、促销和节假日协变量
-  - Kaggle public score: `0.38022`
-- `version6.1`: 在 `version6` 基础上把最终 `LightGBM/XGBoost` 融合从简单平均改成加权平均，先测试 `0.6 / 0.4` 权重。
-  - Kaggle public score: `0.38041`
-- `version6.2`: 延续 `version6.1` 的加权融合思路，把最终融合权重改成 `0.45 / 0.55`，测试更偏向 `XGBoost` 的组合。
-  - Kaggle public score: `0.38017`
-- `version6.3`: 保持 `version6.2` 的所有数据处理、模型配置和集成流程不变，只把最终融合权重改成 `0.40 / 0.60`，用于单独检验“更偏向 XGBoost”是否继续降分。
+| 版本 | 核心方案 | Kaggle public score | 是否推荐继续 |
+| --- | --- | --- | --- |
+| `version1` | 线性回归基线 | 未提交 | 否 |
+| `version2` | 分层移动平均 | `0.47815` | 否 |
+| `version3` | 移动平均 + 节假日/油价/岭回归校准 | `0.44476` | 否 |
+| `version4` | `LightGBM + lag/rolling` | 线上失真 | 否 |
+| `version5` | 无泄漏递推 `LightGBM` | 未作为主线提交 | 否 |
+| `version6` | `Darts + LightGBM/XGBoost` 多序列集成 | `0.38022` | 是 |
+| `version6.1` | `version6` 的 `0.6 / 0.4` 加权融合 | `0.38041` | 否 |
+| `version6.2` | `version6` 的 `0.45 / 0.55` 加权融合 | `0.38017` | 是 |
+| `version6.3` | `version6.2` 的 `0.40 / 0.60` 单因子实验 | `0.38015` | 是 |
+| `version6.4` | `version6.3` 的 `0.35 / 0.65` 单因子实验 | 待提交 | 待定 |
+
+### `version1`
+
+- 核心方案: `LinearRegression`
+- 主要做法: 使用 `year/month/day/dayofweek + store_nbr + family_code + onpromotion` 直接回归 `sales`
+- 目的: 建一个最基础、最容易跑通的线性基线
+- 特点: 实现简单、运行很快，但对时间序列的季节性和长尾销量建模能力弱
+
+### `version2`
+
+- 核心方案: 分层移动平均基线
+- 主要做法: 按 `store_nbr + family + dayofweek` 统计最近 `14/28/56` 天均值，并用 `onpromotion` 做轻量修正
+- 目的: 用纯 `pandas`/`numpy` 做一个不依赖复杂模型的强基线
+- Kaggle public score: `0.47815`
+- 特点: 很稳、很快、可解释性强
+
+### `version3`
+
+- 核心方案: `version2 + 节假日/油价/岭回归校准`
+- 主要做法: 在移动平均基线之上加入 `holidays_events`、`oil` 和门店区域映射，再用轻量岭回归做校准
+- 目的: 验证外部协变量是否能直接带来收益
+- Kaggle public score: `0.44476`
+- 特点: 比纯移动平均更强，但外部特征处理较粗，提升有限
+
+### `version4`
+
+- 核心方案: `LightGBM + lag/rolling` 特征
+- 主要做法: 构造 `lag_7/14/28`、滚动均值/标准差、日期特征和促销特征，在 `log1p(sales)` 上训练 `LightGBM`
+- 目的: 从统计基线升级到表格树模型
+- 已知问题: 验证方式存在多步预测泄漏，线下结果过于乐观，线上提交失真
+
+### `version5`
+
+- 核心方案: 无泄漏递推版 `LightGBM`
+- 主要做法: 改成未来 16 天逐日滚动预测，每一步只使用历史和前一步预测值生成特征
+- 目的: 修复 `version4` 的验证和提交不一致问题
+- 特点: 逻辑更正确，但当前效果不如 `version6` 路线
+
+### `version6`
+
+- 核心方案: `Darts` 多序列集成
+- 主要做法:
+  - 参考 [storesales-1.ipynb](D:/Code/store-sales-time-series-forecasting/storesales-1.ipynb)
+  - 按 `family` 拆成多条门店时间序列
+  - 使用静态协变量、过去协变量、未来协变量
+  - 引入 `transactions`、`oil`、`onpromotion`、节假日和时间索引
+  - 使用 4 组不同 `lags` 的 `LightGBMModel`
+  - 使用 4 组不同 `lags` 的 `XGBModel`
+  - 再对两轮预测结果做平均融合
+- 目的: 复刻接近高分 notebook 的重型方案
+- Kaggle public score: `0.38022`
+- 特点: 当前主线高分方案，但训练和预测耗时明显更长
+
+### `version6.1`
+
+- 核心方案: `version6 + 加权融合`
+- 主要做法: 保持 `version6` 所有数据处理和模型配置不变，只把最终 `LightGBM/XGBoost` 融合从 `1:1` 平均改成 `0.6 / 0.4`
+- 目的: 单独测试最终融合权重是否影响线上分数
+- Kaggle public score: `0.38041`
+- 结论: 这组权重比 `version6` 更差，说明简单偏向 `LightGBM` 不是正确方向
+
+### `version6.2`
+
+- 核心方案: `version6 + 更偏向 XGBoost 的加权融合`
+- 主要做法: 保持 `version6.1` 的全部流程不变，只把最终融合权重改成 `0.45 / 0.55`
+- 目的: 单独检验“更偏向 `XGBoost`”是否能继续降分
+- Kaggle public score: `0.38017`
+- 结论: 目前是当前最佳结果，说明最终融合权重是一个有效优化因子
+
+### `version6.3`
+
+- 核心方案: `version6.2` 的单因子延伸实验
+- 主要做法: 保持 `version6.2` 的数据处理、模型配置和集成流程完全不变，只把最终融合权重改成 `0.40 / 0.60`
+- 目的: 继续验证“增加 `XGBoost` 权重”是否稳定降低分数
+- Kaggle public score: `0.38015`
+- 结论: 在当前实验链条里，最终融合继续偏向 `XGBoost` 仍然带来了小幅提升
+
+### `version6.4`
+
+- 核心方案: `version6.3` 的单因子延伸实验
+- 主要做法: 保持 `version6.3` 的数据处理、模型配置和集成流程完全不变，只把最终融合权重改成 `0.35 / 0.65`
+- 目的: 继续验证“增加 `XGBoost` 权重”是否仍然稳定降低分数
+- 状态: 待运行/待记录线上分数
 
 ## Files
 
