@@ -15,6 +15,8 @@
 - `version6.1`: 在 `version6` 基础上把最终 `LightGBM/XGBoost` 融合从简单平均改成加权平均，先测试 `0.6 / 0.4` 权重。
   - Kaggle public score: `0.38041`
 - `version6.2`: 延续 `version6.1` 的加权融合思路，把最终融合权重改成 `0.45 / 0.55`，测试更偏向 `XGBoost` 的组合。
+  - Kaggle public score: `0.38017`
+- `version6.3`: 保持 `version6.2` 的所有数据处理、模型配置和集成流程不变，只把最终融合权重改成 `0.40 / 0.60`，用于单独检验“更偏向 XGBoost”是否继续降分。
 
 ## Files
 
