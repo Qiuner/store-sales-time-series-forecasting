@@ -688,7 +688,7 @@
     <div class="grid-2-6-6" style="margin-top:5vh;gap:3vw">
       <div>
         <div class="callout" data-anim>
-          <span class="q-big">已验证因子：<em>1 个</em></span>
+          <span class="q-big">已验证因子：<em>2 个</em></span>
           <span class="cite">Verified Factor</span>
         </div>
         <div class="rowline" style="margin-top:3vh" data-anim>
@@ -706,10 +706,15 @@
           <div class="v">当前最优区间在 `0.40 / 0.60` 附近，`version6.3` 为最佳。</div>
           <div class="m">0.38015</div>
         </div>
+        <div class="rowline" data-anim>
+          <div class="k">Lag 730</div>
+          <div class="v">移除 `730` 超长滞后后，`version7.1` 分数退化，说明该长周期特征有效。</div>
+          <div class="m">0.38138</div>
+        </div>
       </div>
       <div>
         <div class="callout" data-anim>
-          <span class="q-big">候选因子：<em>多于 1 个</em></span>
+          <span class="q-big">候选因子：<em>仍有若干</em></span>
           <span class="cite">Candidate Factors</span>
         </div>
         <div class="rowline" style="margin-top:3vh" data-anim>
@@ -719,8 +724,8 @@
         </div>
         <div class="rowline" data-anim>
           <div class="k">Lags</div>
-          <div class="v">是否保留超长 `lags`，例如 `365 / 730`，还是应当降噪。</div>
-          <div class="m">Todo</div>
+          <div class="v">`730` 已验证应保留；后续可继续测试 `365` 或更细的滞后组合，而不是直接删长滞后。</div>
+          <div class="m">Partial</div>
         </div>
         <div class="rowline" data-anim>
           <div class="k">Params</div>
@@ -732,7 +737,7 @@
   </div>
   <div class="foot">
     <div class="title">因子识别</div>
-    <div>已验证 1 个，候选因子若干</div>
+    <div>已验证 2 个，候选因子若干</div>
   </div>
 </section>
 
