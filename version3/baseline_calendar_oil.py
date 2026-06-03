@@ -2,6 +2,23 @@ import numpy as np
 import pandas as pd
 
 
+# ==================== 参数与因子说明 ====================
+# TRAIN_PATH / TEST_PATH / STORES_PATH / HOLIDAYS_PATH / OIL_PATH:
+#   原始数据表路径。
+# VALIDATION_START:
+#   线下验证起点日期。
+# META_TRAIN_DAYS:
+#   用于训练岭回归校准层的近端样本窗口长度。
+# RIDGE_ALPHA:
+#   岭回归正则强度，控制校准层复杂度。
+# OUTPUT_PATH:
+#   当前版本提交文件输出路径。
+# 这个版本使用的主要因子:
+#   1. version2 的分层移动平均统计量。
+#   2. 节假日类型、作用范围和条目数。
+#   3. 原油价格及 7/14 日平滑均值。
+#   4. 月初/月末等补充时间因子。
+#   5. onpromotion 的对数变换。
 TRAIN_PATH = "train.csv"
 TEST_PATH = "test.csv"
 STORES_PATH = "stores.csv"
@@ -16,12 +33,14 @@ RIDGE_ALPHA = 3.0
 OUTPUT_PATH = "version3/submission_calendar_oil.csv"
 
 
+# ==================== 评估指标 ====================
 def rmsle(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     y_true = np.clip(y_true, 0, None)
     y_pred = np.clip(y_pred, 0, None)
     return float(np.sqrt(np.mean((np.log1p(y_pred) - np.log1p(y_true)) ** 2)))
 
 
+# ==================== 基础时间特征 ====================
 def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["date"] = pd.to_datetime(df["date"])
@@ -32,6 +51,8 @@ def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ==================== 外部协变量准备 ====================
+# 原油价格先补齐缺失，再构造平滑均值因子。
 def prepare_oil() -> pd.DataFrame:
     oil = pd.read_csv(OIL_PATH)
     oil["date"] = pd.to_datetime(oil["date"])
@@ -42,6 +63,8 @@ def prepare_oil() -> pd.DataFrame:
     return oil
 
 
+# ==================== 节假日特征工程 ====================
+# 将不同作用范围的节假日统一映射到 store-date 粒度。
 def _holiday_flags(df: pd.DataFrame, scope_col: str) -> pd.DataFrame:
     df = df.copy()
     df["is_holiday"] = (df["type"] == "Holiday").astype(np.int8)
@@ -147,6 +170,7 @@ def prepare_store_date_holidays(base_df: pd.DataFrame) -> pd.DataFrame:
     return agg
 
 
+# ==================== 特征合并 ====================
 def enrich_features(df: pd.DataFrame, oil: pd.DataFrame, holidays_store_date: pd.DataFrame) -> pd.DataFrame:
     df = df.merge(oil, on="date", how="left")
     df = df.merge(holidays_store_date, on=["date", "store_nbr"], how="left")
@@ -173,6 +197,7 @@ def enrich_features(df: pd.DataFrame, oil: pd.DataFrame, holidays_store_date: pd
     return df
 
 
+# ==================== 基线统计与预测 ====================
 def build_stats(train_df: pd.DataFrame, cutoff_date: pd.Timestamp) -> dict[str, pd.DataFrame | float]:
     history = train_df[train_df["date"] < cutoff_date].copy()
 
@@ -221,6 +246,8 @@ def predict_base(target_df: pd.DataFrame, stats: dict[str, pd.DataFrame | float]
     return np.clip(base_pred.to_numpy() * promo_multiplier, 0, None)
 
 
+# ==================== 校准层特征与模型 ====================
+# 在移动平均基线之上，再用岭回归吸收节假日和油价等残差信息。
 def make_meta_features(df: pd.DataFrame, base_pred: np.ndarray) -> pd.DataFrame:
     feat = pd.DataFrame(index=df.index)
     feat["log_base_pred"] = np.log1p(base_pred)
@@ -269,6 +296,7 @@ def predict_ridge(model: dict[str, np.ndarray | list[str]], X: pd.DataFrame) -> 
     return design @ model["beta"]
 
 
+# ==================== 验证与提交 ====================
 def validate(train_df: pd.DataFrame) -> tuple[float, float]:
     valid_start = pd.Timestamp(VALIDATION_START)
     meta_start = valid_start - pd.Timedelta(days=META_TRAIN_DAYS)
@@ -317,6 +345,7 @@ def fit_submission(train_df: pd.DataFrame, test_df: pd.DataFrame) -> pd.DataFram
     return submission
 
 
+# ==================== 主流程入口 ====================
 def main() -> None:
     train = pd.read_csv(TRAIN_PATH, usecols=["date", "store_nbr", "family", "sales", "onpromotion"])
     test = pd.read_csv(TEST_PATH, usecols=["id", "date", "store_nbr", "family", "onpromotion"])

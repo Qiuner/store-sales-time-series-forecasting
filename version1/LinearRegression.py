@@ -1,3 +1,4 @@
+# ==================== 依赖导入 ====================
 # 导入 numpy，用于数值计算
 import numpy as np
 
@@ -8,10 +9,21 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 
 
+# ==================== 参数与因子说明 ====================
+# BASE:
+#   Kaggle 比赛数据根目录。
+# 这个版本使用的主要因子:
+#   1. year / month / day / dayofweek: 基础日历因子。
+#   2. store_nbr: 门店编号。
+#   3. family_code: 商品大类编码。
+#   4. onpromotion: 促销商品数量。
+# 输出文件:
+#   submission.csv
 # Kaggle 数据集路径
 BASE = '/kaggle/input/competitions/store-sales-time-series-forecasting/'
 
 
+# ==================== 数据读取 ====================
 # 读取训练集
 train = pd.read_csv(BASE + 'train.csv')
 
@@ -22,7 +34,8 @@ test = pd.read_csv(BASE + 'test.csv')
 sample = pd.read_csv(BASE + 'sample_submission.csv')
 
 
-# 特征工程函数
+# ==================== 特征工程 ====================
+# 把原始字段转换为线性模型可直接消费的数值特征。
 def make_features(df):
 
     # 复制一份数据，避免修改原始数据
@@ -67,6 +80,7 @@ def make_features(df):
     ]
 
 
+# ==================== 模型训练与预测 ====================
 # 构建训练特征
 X_train = make_features(train)
 
@@ -97,6 +111,7 @@ submission = sample.copy()
 # 把预测结果填入 sales 列
 submission['sales'] = preds
 
+# ==================== 提交文件导出 ====================
 # 导出 CSV 文件
 submission.to_csv('submission.csv', index=False)
 

@@ -3,6 +3,24 @@ import pandas as pd
 import lightgbm as lgb
 
 
+# ==================== 参数与因子说明 ====================
+# TRAIN_PATH / TEST_PATH / SAMPLE_SUBMISSION_PATH:
+#   原始数据与官方提交模板路径。
+# TRAIN_START:
+#   用于训练递推模型的起始日期。
+# VALID_START:
+#   线下验证起点日期。
+# HISTORY_DAYS:
+#   为了生成 lag / rolling 特征而额外保留的历史窗口长度。
+# OUTPUT_PATH:
+#   当前版本提交文件输出路径。
+# 这个版本使用的主要因子:
+#   1. lag_7 / 14 / 28: 历史销量滞后。
+#   2. rolling_mean / rolling_std: 历史销量统计量。
+#   3. promo_lag_7 / promo_mean_7: 促销历史统计量。
+#   4. dayofweek / month / weekofyear 等时间因子。
+# 这个版本的关键设计:
+#   逐日递推预测，确保未来特征只依赖历史和前一步预测值，避免信息泄漏。
 TRAIN_PATH = "train.csv"
 TEST_PATH = "test.csv"
 SAMPLE_SUBMISSION_PATH = "sample_submission.csv"
@@ -14,12 +32,14 @@ HISTORY_DAYS = 28
 OUTPUT_PATH = "version5/submission_lgbm_recursive.csv"
 
 
+# ==================== 评估指标 ====================
 def rmsle(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     y_true = np.clip(y_true, 0, None)
     y_pred = np.clip(y_pred, 0, None)
     return float(np.sqrt(np.mean((np.log1p(y_pred) - np.log1p(y_true)) ** 2)))
 
 
+# ==================== 基础时间特征 ====================
 def add_calendar_columns(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["date"] = pd.to_datetime(df["date"])
@@ -33,6 +53,7 @@ def add_calendar_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ==================== 面板与键构造 ====================
 def prepare_base_frame(train: pd.DataFrame, future: pd.DataFrame) -> pd.DataFrame:
     train = train.copy()
     future = future.copy()
@@ -53,6 +74,8 @@ def add_static_keys(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ==================== 历史缓存构造 ====================
+# 把每个 store-family 组合的销量与促销历史缓存成字典，供递推阶段滚动读取。
 def build_history_dict(history_df: pd.DataFrame) -> dict[str, list[float]]:
     history_df = history_df.sort_values(["sf_key", "date"])
     out: dict[str, list[float]] = {}
@@ -69,6 +92,7 @@ def build_promo_history_dict(history_df: pd.DataFrame) -> dict[str, list[float]]
     return out
 
 
+# ==================== 安全统计工具 ====================
 def safe_mean(values: list[float]) -> float:
     if not values:
         return 0.0
@@ -81,6 +105,8 @@ def safe_std(values: list[float]) -> float:
     return float(np.std(values, ddof=1))
 
 
+# ==================== 递推特征生成 ====================
+# 对某一天的所有样本，仅使用当前已知历史生成 lag 与 rolling 特征。
 def make_temporal_features(
     df_slice: pd.DataFrame,
     sales_history: dict[str, list[float]],
@@ -134,6 +160,7 @@ def make_temporal_features(
     return feat
 
 
+# ==================== 特征清单与缺失处理 ====================
 def feature_columns() -> tuple[list[str], list[str]]:
     cols = [
         "store_nbr",
@@ -170,6 +197,7 @@ def fill_missing(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
     return df
 
 
+# ==================== LightGBM 训练工具 ====================
 def fit_lgbm(
     X_train: pd.DataFrame,
     y_train: np.ndarray,
@@ -208,6 +236,8 @@ def cast_categories(df: pd.DataFrame, categorical_cols: list[str]) -> pd.DataFra
     return df
 
 
+# ==================== 递推预测主逻辑 ====================
+# 逐天预测，并把当天预测值回写进历史缓存，供后续日期继续使用。
 def recursive_predict(
     history_df: pd.DataFrame,
     future_df: pd.DataFrame,
@@ -248,6 +278,8 @@ def recursive_predict(
     return future_df
 
 
+# ==================== 训练样本构造 ====================
+# 为训练阶段模拟与递推预测一致的特征生成过程。
 def build_training_features(train_hist: pd.DataFrame, train_target: pd.DataFrame) -> pd.DataFrame:
     history = add_static_keys(train_hist.copy())
     target = add_static_keys(train_target.copy())
@@ -290,6 +322,7 @@ def build_training_features(train_hist: pd.DataFrame, train_target: pd.DataFrame
     return out
 
 
+# ==================== 主流程入口 ====================
 def main() -> None:
     train = pd.read_csv(TRAIN_PATH, usecols=["date", "store_nbr", "family", "sales", "onpromotion"])
     test = pd.read_csv(TEST_PATH, usecols=["id", "date", "store_nbr", "family", "onpromotion"])

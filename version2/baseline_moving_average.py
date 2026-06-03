@@ -2,6 +2,18 @@ import numpy as np
 import pandas as pd
 
 
+# ==================== 参数与因子说明 ====================
+# TRAIN_PATH / TEST_PATH / SAMPLE_SUBMISSION_PATH:
+#   原始训练集、测试集和官方提交模板路径。
+# VALIDATION_START:
+#   线下验证起点日期，用于模拟最后 16 天附近的 leaderboard 表现。
+# SUBMISSION_OUTPUT:
+#   当前版本提交文件输出路径。
+# 这个版本使用的主要因子:
+#   1. 14 / 28 / 56 天历史均值。
+#   2. store_nbr + family + dayofweek 分层统计。
+#   3. family 全局均值兜底。
+#   4. onpromotion 轻量修正项。
 TRAIN_PATH = "train.csv"
 TEST_PATH = "test.csv"
 SAMPLE_SUBMISSION_PATH = "sample_submission.csv"
@@ -10,12 +22,15 @@ VALIDATION_START = "2017-08-01"
 SUBMISSION_OUTPUT = "version2/submission_baseline.csv"
 
 
+# ==================== 评估指标 ====================
 def rmsle(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     y_true = np.clip(y_true, 0, None)
     y_pred = np.clip(y_pred, 0, None)
     return float(np.sqrt(np.mean((np.log1p(y_pred) - np.log1p(y_true)) ** 2)))
 
 
+# ==================== 基础特征 ====================
+# 这里只补最必要的时间因子，保持基线方案轻量。
 def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["date"] = pd.to_datetime(df["date"])
@@ -23,6 +38,8 @@ def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ==================== 统计量构造 ====================
+# 基于不同回看窗口构造分层均值，作为移动平均基线的核心因子。
 def build_stats(train_df: pd.DataFrame, cutoff_date: pd.Timestamp) -> dict[str, pd.DataFrame | float]:
     history = train_df[train_df["date"] < cutoff_date].copy()
 
@@ -51,6 +68,8 @@ def build_stats(train_df: pd.DataFrame, cutoff_date: pd.Timestamp) -> dict[str, 
     return stats
 
 
+# ==================== 预测逻辑 ====================
+# 先按多层级均值加权，再用促销强度做温和放大。
 def predict_with_stats(target_df: pd.DataFrame, stats: dict[str, pd.DataFrame | float]) -> np.ndarray:
     pred_df = target_df[["store_nbr", "family", "dayofweek", "onpromotion"]].copy()
 
@@ -75,6 +94,7 @@ def predict_with_stats(target_df: pd.DataFrame, stats: dict[str, pd.DataFrame | 
     return np.clip(pred, 0, None)
 
 
+# ==================== 验证与提交 ====================
 def validate(train_df: pd.DataFrame, validation_start: str) -> float:
     cutoff_date = pd.Timestamp(validation_start)
     valid_df = train_df[train_df["date"] >= cutoff_date].copy()
@@ -95,6 +115,7 @@ def fit_predict_submission(train_df: pd.DataFrame, test_df: pd.DataFrame) -> pd.
     return submission
 
 
+# ==================== 主流程入口 ====================
 def main() -> None:
     train = pd.read_csv(TRAIN_PATH, usecols=["date", "store_nbr", "family", "sales", "onpromotion"])
     test = pd.read_csv(TEST_PATH, usecols=["id", "date", "store_nbr", "family", "onpromotion"])

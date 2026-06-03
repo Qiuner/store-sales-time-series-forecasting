@@ -19,12 +19,26 @@ from version6.darts_ensemble import (
 )
 
 
+# ==================== 参数与因子说明 ====================
+# ROOT_DIR:
+#   为了复用 version6 主线模块而注入的仓库根路径。
+# LGBM_WEIGHT / XGB_WEIGHT:
+#   最终融合阶段的模型权重，本版本固定为 0.40 / 0.60。
+# OUTPUT_PATH:
+#   当前实验版本提交文件输出路径。
+# 这个版本沿用的主要因子:
+#   与 version6 主线完全一致，包括 static covariates、transactions、oil、
+#   onpromotion、日期因子、节假日因子以及 7 / 63 / 365 / 730 多组 lags。
+# 这个版本唯一改动:
+#   只测试“进一步偏向 XGBoost”的最终融合比例。
 LGBM_WEIGHT = 0.40
 XGB_WEIGHT = 0.60
 OUTPUT_PATH = "version6_3/submission_darts_weighted_ensemble.csv"
 
 
+# ==================== 主流程入口 ====================
 def main():
+    # ---------- 数据读取与预处理 ----------
     train, test, oil, store, transaction, holiday = load_data()
     test_end = test.date.max()
 
@@ -44,6 +58,7 @@ def main():
         missing_dates,
     )
 
+    # ---------- 目标序列与协变量构造 ----------
     static_cols = ["city", "state", "type", "cluster"]
     target_dict, pipe_dict, id_dict = get_target_series(data, train_end, static_cols)
 
@@ -70,6 +85,7 @@ def main():
         future_ma_cols=future_ma_cols,
     )
 
+    # ---------- 训练器与模型配置 ----------
     trainer = Trainer(
         target_dict=target_dict,
         pipe_dict=pipe_dict,
@@ -92,6 +108,7 @@ def main():
         "output_chunk_length": 1,
     }
 
+    # LightGBM 分支：覆盖短、中、年、双年季节性。
     ens_models = ["lgbm", "lgbm", "lgbm", "lgbm"]
     ens_configs = [
         {**base_config},
@@ -100,6 +117,7 @@ def main():
         {**base_config, "lags": 730},
     ]
 
+    # XGBoost 分支：保持同一组 lags，用于做异构集成。
     xgb_base = {
         **base_config,
         "n_estimators": 100,
@@ -116,6 +134,7 @@ def main():
         {**xgb_base, "lags": 730},
     ]
 
+    # ---------- 同模型内部两轮集成 ----------
     predictions1 = trainer.ensemble_predict(model_names=ens_models, model_configs=ens_configs)
     predictions2 = trainer.ensemble_predict(model_names=ens_models, model_configs=ens_configs, drop_before="2015-01-01")
     lgbm_final = predictions1.merge(predictions2, on=["date", "store_nbr", "family"], how="left")
@@ -128,6 +147,7 @@ def main():
     xgb_final["sales"] = xgb_final[["sales_x", "sales_y"]].mean(axis=1)
     xgb_final = xgb_final.drop(columns=["sales_x", "sales_y"])
 
+    # ---------- 最终跨模型加权融合 ----------
     final_ensemble = lgbm_final.merge(
         xgb_final, on=["date", "store_nbr", "family"], suffixes=("_lgbm", "_xgb"), how="left"
     )
@@ -136,6 +156,7 @@ def main():
     )
     final_ensemble = final_ensemble.drop(columns=["sales_lgbm", "sales_xgb"])
 
+    # ---------- 提交文件导出 ----------
     submission = prepare_submission(test, final_ensemble)
     submission.to_csv(OUTPUT_PATH, index=False)
     print(f"Saved submission to {OUTPUT_PATH}")

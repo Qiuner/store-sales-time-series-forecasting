@@ -17,6 +17,22 @@ warnings.filterwarnings("ignore")
 os.environ["LIGHTGBM_VERBOSITY"] = "-1"
 
 
+# ==================== 参数与因子说明 ====================
+# BASE_DIR:
+#   数据文件所在根目录，默认使用仓库根目录。
+# TRAIN_PATH / TEST_PATH / OIL_PATH / STORE_PATH / TRANSACTION_PATH / HOLIDAY_PATH:
+#   各原始数据表路径。
+# SUBMISSION_PATH:
+#   version6 主线方案的提交文件输出路径。
+# 这个版本使用的主要因子:
+#   1. target series: 按 family 拆分后的多门店销量序列。
+#   2. static covariates: city / state / type / cluster。
+#   3. past covariates: transactions。
+#   4. future covariates: oil、onpromotion、日期索引、work_day、筛选后的节假日。
+#   5. future moving-average covariates: oil_ma7 / 28、onpromotion_ma7 / 28。
+#   6. 多组 lags: 7、63、365、730，用于覆盖短中长期季节性。
+# 这个版本的核心结构:
+#   先分别训练 LightGBM 与 XGBoost 多分支集成，再做模型间平均融合。
 BASE_DIR = "."
 TRAIN_PATH = os.path.join(BASE_DIR, "train.csv")
 TEST_PATH = os.path.join(BASE_DIR, "test.csv")
@@ -27,6 +43,7 @@ HOLIDAY_PATH = os.path.join(BASE_DIR, "holidays_events.csv")
 SUBMISSION_PATH = os.path.join(BASE_DIR, "version6", "submission_darts_ensemble.csv")
 
 
+# ==================== 通用打印工具 ====================
 def cprint(title: str, *args: object) -> None:
     print("=" * len(title))
     print(title)
@@ -35,6 +52,7 @@ def cprint(title: str, *args: object) -> None:
         print(arg)
 
 
+# ==================== 数据读取 ====================
 def load_data():
     train = pd.read_csv(TRAIN_PATH, parse_dates=["date"])
     test = pd.read_csv(TEST_PATH, parse_dates=["date"])
@@ -45,6 +63,8 @@ def load_data():
     return train, test, oil, store, transaction, holiday
 
 
+# ==================== 原始数据预处理 ====================
+# 补齐训练面板中的缺失日期与缺失组合，保证后续多序列建模输入规整。
 def preprocess_train(train: pd.DataFrame) -> tuple[pd.DataFrame, list[str], pd.Timestamp, pd.Timestamp]:
     train_start = train.date.min()
     train_end = train.date.max()
@@ -61,6 +81,7 @@ def preprocess_train(train: pd.DataFrame) -> tuple[pd.DataFrame, list[str], pd.T
     return train, missing_dates, train_start, train_end
 
 
+# 补齐油价日期并插值，避免未来协变量断裂。
 def preprocess_oil(oil: pd.DataFrame, train_start: pd.Timestamp, test_end: pd.Timestamp) -> pd.DataFrame:
     oil = oil.merge(
         pd.DataFrame({"date": pd.date_range(train_start, test_end)}),
@@ -71,6 +92,7 @@ def preprocess_oil(oil: pd.DataFrame, train_start: pd.Timestamp, test_end: pd.Ti
     return oil
 
 
+# 用门店销量信息辅助补齐 transaction，并在停业日强制置零。
 def preprocess_transactions(train: pd.DataFrame, transaction: pd.DataFrame) -> pd.DataFrame:
     store_sales = train.groupby(["date", "store_nbr"]).sales.sum().reset_index()
     transaction = transaction.merge(store_sales, on=["date", "store_nbr"], how="outer").sort_values(
@@ -84,6 +106,8 @@ def preprocess_transactions(train: pd.DataFrame, transaction: pd.DataFrame) -> p
     return transaction
 
 
+# ==================== 节假日筛选与编码 ====================
+# 只保留当前主线里验证效果较稳定的全国性节假日因子，并单独处理补班日。
 def process_holidays(holiday: pd.DataFrame, store: pd.DataFrame):
     def process_holiday(s: str) -> str:
         if "futbol" in s:
@@ -133,6 +157,7 @@ def process_holidays(holiday: pd.DataFrame, store: pd.DataFrame):
     return work_days, keep_national_holidays, selected_holidays
 
 
+# ==================== 全量特征面板合并 ====================
 def merge_all_data(
     train: pd.DataFrame,
     test: pd.DataFrame,
@@ -177,6 +202,8 @@ def merge_all_data(
     return data
 
 
+# ==================== Darts 预处理流水线 ====================
+# 统一负责缺失填补、静态协变量编码、对数变换和缩放。
 def get_pipeline(static_covs_transform=False, log_transform=False):
     steps = [MissingValuesFiller(n_jobs=-1)]
     if static_covs_transform:
@@ -198,6 +225,8 @@ def get_pipeline(static_covs_transform=False, log_transform=False):
     return Pipeline(steps)
 
 
+# ==================== 目标序列构造 ====================
+# 以 family 为外层分组，把每个门店的销量转换成 Darts TimeSeries。
 def get_target_series(data: pd.DataFrame, train_end: pd.Timestamp, static_cols, log_transform=True):
     target_dict = {}
     pipe_dict = {}
@@ -225,6 +254,8 @@ def get_target_series(data: pd.DataFrame, train_end: pd.Timestamp, static_cols, 
     return target_dict, pipe_dict, id_dict
 
 
+# ==================== 协变量序列构造 ====================
+# past covariates 只保留历史可见信息，future covariates 则覆盖训练和预测区间。
 def get_covariates(
     data: pd.DataFrame,
     train_end: pd.Timestamp,
@@ -284,6 +315,8 @@ def get_covariates(
 
 
 class Trainer:
+    # ==================== 训练器模块 ====================
+    # 集中封装协变量裁剪、模型构建、单 family 预测和集成逻辑。
     def __init__(
         self,
         target_dict,
@@ -312,6 +345,7 @@ class Trainer:
         self.setup()
 
     def setup(self):
+        # 根据实验设置裁剪静态协变量、过去协变量和未来协变量。
         for fam in tqdm(self.target_dict.keys(), desc="Setup"):
             if self.static_covs != "keep_all":
                 if self.static_covs is not None:
@@ -339,6 +373,7 @@ class Trainer:
         return np.clip(array, a_min=0.0, a_max=None)
 
     def train_valid_split(self, target, length):
+        # 预留给线下切分使用，当前主线主要直接做全量预测。
         train = [t[:-length] for t in target]
         valid_end_idx = -length + self.forecast_horizon
         if valid_end_idx >= 0:
@@ -347,6 +382,7 @@ class Trainer:
         return train, valid
 
     def get_models(self, model_names, model_configs):
+        # 按配置动态构建 lr / lgbm / xgb 多分支模型。
         models = {
             "lr": LinearRegressionModel,
             "lgbm": LightGBMModel,
@@ -368,6 +404,7 @@ class Trainer:
         return built
 
     def generate_forecasts(self, models, train, pipe, past_covs, future_covs, drop_before):
+        # 对单个 family 的所有门店序列做多模型预测，并在门店近期全零时强制输出零预测。
         if drop_before is not None:
             date = pd.Timestamp(drop_before) - pd.Timedelta(days=1)
             train = [t.drop_before(date) for t in train]
@@ -401,6 +438,7 @@ class Trainer:
         return rmsle(valid, pred, inter_reduction=np.mean)
 
     def ensemble_predict(self, model_names, model_configs, drop_before=None):
+        # 对所有 family 执行预测，并把 TimeSeries 结果还原回表格形式。
         forecasts = []
         for fam in tqdm(self.target_dict.keys(), desc="Forecast"):
             target = self.target_dict[fam]
@@ -424,6 +462,7 @@ class Trainer:
         return forecasts
 
 
+# ==================== 提交文件整理 ====================
 def prepare_submission(test: pd.DataFrame, predictions: pd.DataFrame) -> pd.DataFrame:
     predictions = predictions.copy()
     predictions["store_nbr"] = predictions["store_nbr"].replace("store_nbr_", "", regex=True).astype(int)
@@ -432,6 +471,8 @@ def prepare_submission(test: pd.DataFrame, predictions: pd.DataFrame) -> pd.Data
     return submission
 
 
+# ==================== 主流程入口 ====================
+# version6 先做 LGBM 多分支平均，再做 XGB 多分支平均，最后两者 1:1 融合。
 def main():
     train, test, oil, store, transaction, holiday = load_data()
     test_end = test.date.max()

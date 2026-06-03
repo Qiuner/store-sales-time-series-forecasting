@@ -3,6 +3,22 @@ import pandas as pd
 import lightgbm as lgb
 
 
+# ==================== 参数与因子说明 ====================
+# TRAIN_PATH / TEST_PATH / SAMPLE_SUBMISSION_PATH:
+#   原始数据与官方提交模板路径。
+# TRAIN_START:
+#   用于训练树模型的起始日期。
+# VALID_START:
+#   线下验证起点日期。
+# OUTPUT_PATH:
+#   当前版本提交文件输出路径。
+# 这个版本使用的主要因子:
+#   1. lag_7 / 14 / 28: 近期滞后销量。
+#   2. rolling_mean / rolling_std: 滚动均值与波动性。
+#   3. promo_lag_7 / promo_mean_7: 促销历史因子。
+#   4. dayofweek / month / weekofyear 等日历因子。
+# 已知限制:
+#   该版本验证与真实多步提交场景不完全一致，可能出现乐观偏差。
 TRAIN_PATH = "train.csv"
 TEST_PATH = "test.csv"
 SAMPLE_SUBMISSION_PATH = "sample_submission.csv"
@@ -13,12 +29,14 @@ VALID_START = "2017-08-01"
 OUTPUT_PATH = "version4/submission_lgbm.csv"
 
 
+# ==================== 评估指标 ====================
 def rmsle(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     y_true = np.clip(y_true, 0, None)
     y_pred = np.clip(y_pred, 0, None)
     return float(np.sqrt(np.mean((np.log1p(y_pred) - np.log1p(y_true)) ** 2)))
 
 
+# ==================== 时间与面板构造 ====================
 def add_calendar_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["dayofweek"] = df["date"].dt.dayofweek
@@ -46,6 +64,7 @@ def build_panel(train: pd.DataFrame, test: pd.DataFrame) -> pd.DataFrame:
     return full
 
 
+# ==================== 滞后与滚动特征 ====================
 def add_group_lag_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     grp = df.groupby(["store_nbr", "family"], sort=False)
@@ -68,6 +87,7 @@ def add_group_lag_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ==================== 特征清洗 ====================
 def fill_missing_features(df: pd.DataFrame, feature_cols: list[str]) -> pd.DataFrame:
     df = df.copy()
     for col in feature_cols:
@@ -78,6 +98,7 @@ def fill_missing_features(df: pd.DataFrame, feature_cols: list[str]) -> pd.DataF
     return df
 
 
+# ==================== 训练切分与特征清单 ====================
 def train_valid_split(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     train_mask = (df["is_train"] == 1) & (df["date"] >= pd.Timestamp(TRAIN_START)) & (df["date"] < pd.Timestamp(VALID_START))
     valid_mask = (df["is_train"] == 1) & (df["date"] >= pd.Timestamp(VALID_START))
@@ -112,6 +133,7 @@ def make_feature_columns() -> tuple[list[str], list[str]]:
     return feature_cols, categorical_cols
 
 
+# ==================== 模型训练与验证 ====================
 def fit_model(train_df: pd.DataFrame, valid_df: pd.DataFrame, feature_cols: list[str], categorical_cols: list[str]) -> tuple[lgb.LGBMRegressor, float]:
     X_train = train_df[feature_cols].copy()
     X_valid = valid_df[feature_cols].copy()
@@ -151,6 +173,7 @@ def fit_model(train_df: pd.DataFrame, valid_df: pd.DataFrame, feature_cols: list
     return model, score
 
 
+# ==================== 全量重训与提交 ====================
 def refit_and_predict(full_df: pd.DataFrame, feature_cols: list[str], categorical_cols: list[str]) -> pd.DataFrame:
     train_mask = (full_df["is_train"] == 1) & (full_df["date"] >= pd.Timestamp(TRAIN_START))
     test_mask = full_df["is_train"] == 0
@@ -189,6 +212,7 @@ def refit_and_predict(full_df: pd.DataFrame, feature_cols: list[str], categorica
     return submission
 
 
+# ==================== 主流程入口 ====================
 def main() -> None:
     train = pd.read_csv(TRAIN_PATH, usecols=["date", "store_nbr", "family", "sales", "onpromotion"])
     test = pd.read_csv(TEST_PATH, usecols=["id", "date", "store_nbr", "family", "onpromotion"])
