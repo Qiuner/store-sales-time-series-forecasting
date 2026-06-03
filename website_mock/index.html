@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>版本实验库</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>版本实验库</h1>
+        <p>共 15 个版本实验</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-chip is-active" data-filter="all">全部</button>
+        <button class="filter-chip" data-filter="baseline">基线</button>
+        <button class="filter-chip" data-filter="tree">树模型</button>
+        <button class="filter-chip" data-filter="ensemble">集成主线</button>
+        <button class="filter-chip" data-filter="factor">单因子实验</button>
+      </div>
+    </section>
+
+    <section class="card-grid">
+      <article class="card" data-group="baseline" data-anim="baseline" data-summary="最早的线性回归基线，只使用基础日期字段、门店编号、品类编码和促销信息直接回归销量，主要目标是快速跑通训练、预测和提交全流程。" data-input="train.csv · test.csv · sample_submission.csv" data-output="submission.csv" data-conclusion="适合作为起点，但对复杂季节性和长期结构几乎没有表达能力。" data-steps="读取基础数据|拆分日期字段|编码 family|训练线性回归|导出提交结果" tabindex="0">
+        <div class="card-media theme-blue"><span class="subject-badge">基线</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-wave"></div><div class="scene-dot"></div></div></div>
+        <div class="card-body"><h2>version1</h2><p>最早的线性回归基线，只使用基础日期字段、门店编号、品类编码和促销信息直接回归销量，主要目标是快速跑通训练、预测和提交全流程。</p><span class="level-tag">未提交</span></div>
+      </article>
+
+      <article class="card" data-group="baseline" data-anim="baseline" data-summary="从简单回归转向统计基线，按 store_nbr + family + dayofweek 聚合历史窗口均值，并用轻量促销修正构造更稳定、可解释的预测结果。" data-input="train.csv · test.csv · sample_submission.csv" data-output="version2/submission_baseline.csv" data-conclusion="比线性回归更稳，建立了后续外部变量实验的可对照基线。" data-steps="构造 dayofweek|切分历史窗口|按层级聚合均值|加入促销修正|生成统计提交" tabindex="0">
+        <div class="card-media theme-cyan"><span class="subject-badge">基线</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-grid"></div><div class="scene-dot"></div></div></div>
+        <div class="card-body"><h2>version2</h2><p>从简单回归转向统计基线，按 `store_nbr + family + dayofweek` 聚合历史窗口均值，并用轻量促销修正构造更稳定、可解释的预测结果。</p><span class="level-tag">0.47815</span></div>
+      </article>
+
+      <article class="card" data-group="baseline" data-anim="baseline" data-summary="在统计基线上引入油价、节假日和门店区域信息，再用岭回归对基线残差做二次校准，验证外部协变量是否能稳定提升基线表现。" data-input="train.csv · test.csv · stores.csv · holidays_events.csv · oil.csv" data-output="version3/submission_calendar_oil.csv" data-conclusion="外部协变量确实有帮助，但当时的处理强度还不够。" data-steps="清洗油价|映射节假日|合并门店区域|计算基线预测|岭回归校准残差" tabindex="0">
+        <div class="card-media theme-mint"><span class="subject-badge">基线</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-bars"></div><div class="scene-dot"></div></div></div>
+        <div class="card-body"><h2>version3</h2><p>在统计基线上引入油价、节假日和门店区域信息，再用岭回归对基线残差做二次校准，验证外部协变量是否能稳定提升基线表现。</p><span class="level-tag">0.44476</span></div>
+      </article>
+
+      <article class="card" data-group="tree" data-anim="tree" data-summary="首次系统引入 LightGBM 和时间窗口特征，构造 lag、rolling mean/std、日期与促销特征，希望让树模型自动学习更复杂的非线性关系，但线上提交出现失真。" data-input="train.csv · test.csv" data-output="version4/submission_lgbm.csv" data-conclusion="方向是对的，但验证方式和真实提交场景不一致，导致线上失真。" data-steps="拼接 train/test|生成 lag 特征|生成 rolling 特征|训练 LightGBM|导出预测结果" tabindex="0">
+        <div class="card-media theme-peach"><span class="subject-badge">树模型</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-wave"></div><div class="scene-bars"></div></div></div>
+        <div class="card-body"><h2>version4</h2><p>首次系统引入 LightGBM 和时间窗口特征，构造 `lag`、`rolling mean/std`、日期与促销特征，希望让树模型自动学习更复杂的非线性关系，但线上提交出现失真。</p><span class="level-tag">线上失真</span></div>
+      </article>
+
+      <article class="card" data-group="tree" data-anim="tree" data-summary="针对 version4 的泄漏问题改成逐日递推预测，未来 16 天每一步都只依赖真实历史和上一时刻预测值，让训练逻辑与实际提交逻辑严格一致。" data-input="train.csv · test.csv" data-output="version5/submission_lgbm_recursive.csv" data-conclusion="逻辑更严格，但没有成为最终高分主线。" data-steps="缓存历史销量|逐日生成特征|递推训练/预测|回写预测值|滚动生成未来 16 天" tabindex="0">
+        <div class="card-media theme-blue"><span class="subject-badge">树模型</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-grid"></div><div class="scene-bars"></div></div></div>
+        <div class="card-body"><h2>version5</h2><p>针对 version4 的泄漏问题改成逐日递推预测，未来 16 天每一步都只依赖真实历史和上一时刻预测值，让训练逻辑与实际提交逻辑严格一致。</p><span class="level-tag">未作为主线提交</span></div>
+      </article>
+
+      <article class="card" data-group="ensemble" data-anim="ensemble" data-summary="项目主线正式切换到 Darts 多序列集成方案，按 family 拆分时间序列，挂载 static、past、future covariates，并使用多组 LightGBMModel 与 XGBModel 两级融合。" data-input="train.csv · stores.csv · oil.csv · transactions.csv · holidays_events.csv" data-output="version6/submission_darts_ensemble.csv" data-conclusion="从这里开始，项目进入系统化训练流水线阶段。" data-steps="清洗外部表|构造多序列输入|训练多组 LGBMModel|训练多组 XGBModel|两轮平均后最终融合" tabindex="0">
+        <div class="card-media theme-dark"><span class="subject-badge">集成主线</span><div class="placeholder-scene"><div class="scene-screen dark"></div><div class="scene-wave"></div><div class="scene-grid"></div></div></div>
+        <div class="card-body"><h2>version6</h2><p>项目主线正式切换到 Darts 多序列集成方案，按 family 拆分时间序列，挂载 static、past、future covariates，并使用多组 LightGBMModel 与 XGBModel 两级融合。</p><span class="level-tag">0.38022</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="weight" data-summary="保持 version6 的全部数据处理和模型结构不变，只把最终 LightGBM / XGBoost 的融合权重调整为 0.60 / 0.40，测试偏向 LightGBM 是否有利。" data-input="与 version6 相同" data-output="version6_1/submission_darts_weighted_ensemble.csv" data-conclusion="结果变差，说明简单偏向 LightGBM 不是正确方向。" data-steps="复用 version6 数据流程|仅调整最终融合权重|重新导出提交|记录 leaderboard 分数" tabindex="0">
+        <div class="card-media theme-yellow"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-bars"></div><div class="scene-wave"></div></div></div>
+        <div class="card-body"><h2>version6_1</h2><p>保持 version6 的全部数据处理和模型结构不变，只把最终 LightGBM / XGBoost 的融合权重调整为 `0.60 / 0.40`，测试偏向 LightGBM 是否有利。</p><span class="level-tag">0.38041</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="weight" data-summary="延续同样的单因子权重实验，把最终融合权重改成 0.45 / 0.55，开始证明适度偏向 XGBoost 能够比均值融合和偏向 LightGBM 更稳定地下分。" data-input="与 version6 相同" data-output="version6_2/submission_darts_weighted_ensemble.csv" data-conclusion="首次明确证明融合权重是有效优化因子。" data-steps="复用主线模型|改成 0.45 / 0.55|重新提交验证|记录分数变化" tabindex="0">
+        <div class="card-media theme-cyan"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-wave"></div><div class="scene-grid"></div></div></div>
+        <div class="card-body"><h2>version6_2</h2><p>延续同样的单因子权重实验，把最终融合权重改成 `0.45 / 0.55`，开始证明适度偏向 XGBoost 能够比均值融合和偏向 LightGBM 更稳定地下分。</p><span class="level-tag">0.38017</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="weight-best" data-summary="继续沿着融合权重方向细调，把 LightGBM / XGBoost 权重进一步改成 0.40 / 0.60，成为后续所有结构消融和因子验证实验的统一参照版本。" data-input="与 version6 相同" data-output="version6_3/submission_darts_weighted_ensemble.csv" data-conclusion="这是后续所有单因子实验的稳定参照版本。" data-steps="复用主线模型|改成 0.40 / 0.60|重新提交验证|作为后续实验基线" tabindex="0">
+        <div class="card-media theme-mint"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-wave"></div><div class="scene-dot"></div></div></div>
+        <div class="card-body"><h2>version6_3</h2><p>继续沿着融合权重方向细调，把 LightGBM / XGBoost 权重进一步改成 `0.40 / 0.60`，成为后续所有结构消融和因子验证实验的统一参照版本。</p><span class="level-tag">0.38015</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="weight" data-summary="在 version6_3 的基础上继续加大 XGBoost 比重到 0.35 / 0.65，用于验证最优点是否还会继续偏移，结果说明最优区间已经非常接近 0.40 / 0.60。" data-input="与 version6_3 相同" data-output="version6_4/submission_darts_weighted_ensemble.csv" data-conclusion="没有超过 version6_3，说明权重最优点已基本锁定。" data-steps="维持 version6_3 全流程|进一步提高 XGB 比例|重新提交|对照局部最优点" tabindex="0">
+        <div class="card-media theme-peach"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-grid"></div><div class="scene-bars"></div></div></div>
+        <div class="card-body"><h2>version6_4</h2><p>在 version6_3 的基础上继续加大 XGBoost 比重到 `0.35 / 0.65`，用于验证最优点是否还会继续偏移，结果说明最优区间已经非常接近 `0.40 / 0.60`。</p><span class="level-tag">0.38016</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="weight" data-summary="在最优区间附近做最后一轮收尾微调，把权重改成 0.42 / 0.58，作用是确认 0.40 / 0.60 是否已经可以视为当前局部最优点。" data-input="与 version6_3 相同" data-output="version6_5/submission_darts_weighted_ensemble.csv" data-conclusion="继续证明 0.40 / 0.60 附近是当前最优权重区间。" data-steps="维持 version6_3 全流程|近邻微调融合比例|重新提交|确认局部最优区间" tabindex="0">
+        <div class="card-media theme-blue"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-wave"></div><div class="scene-bars"></div></div></div>
+        <div class="card-body"><h2>version6_5</h2><p>在最优区间附近做最后一轮收尾微调，把权重改成 `0.42 / 0.58`，作用是确认 `0.40 / 0.60` 是否已经可以视为当前局部最优点。</p><span class="level-tag">0.38016</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="lag-off" data-summary="从结构角度做第一轮消融实验，只删除 lag 730 这组超长周期分支，验证双年周期信息到底是有效信号还是额外噪声，结果显示该长周期必须保留。" data-input="与 version6_3 相同" data-output="version7_1/submission_darts_drop_lag730.csv" data-conclusion="双年周期信息是有效信号，lag 730 不能删。" data-steps="保留主线结构|移除 lag 730 分支|重新训练并提交|对照长周期贡献" tabindex="0">
+        <div class="card-media theme-dark"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen dark"></div><div class="scene-bars"></div><div class="scene-dot"></div></div></div>
+        <div class="card-body"><h2>version7_1</h2><p>从结构角度做第一轮消融实验，只删除 `lag 730` 这组超长周期分支，验证双年周期信息到底是有效信号还是额外噪声，结果显示该长周期必须保留。</p><span class="level-tag">0.38138</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="lag-off" data-summary="继续做结构消融，只移除 lag 365 这组一年周期滞后，验证年度季节性是否也是主线模型的重要组成部分，结果证明这组年周期同样有效。" data-input="与 version6_3 相同" data-output="version7_2/submission_darts_drop_lag365.csv" data-conclusion="一年周期同样必须保留，长周期结构并不冗余。" data-steps="保留主线结构|移除 lag 365 分支|重新训练并提交|对照年周期贡献" tabindex="0">
+        <div class="card-media theme-yellow"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-grid"></div><div class="scene-dot"></div></div></div>
+        <div class="card-body"><h2>version7_2</h2><p>继续做结构消融，只移除 `lag 365` 这组一年周期滞后，验证年度季节性是否也是主线模型的重要组成部分，结果证明这组年周期同样有效。</p><span class="level-tag">0.38074</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="holiday" data-summary="在保持主线模型、长周期结构和融合权重不变的情况下，只把节假日集合从 7 个候选缩减到 4 个核心节日，验证节假日特征中是否混入了噪声列。" data-input="与 version6_3 相同" data-output="version7_3/submission_darts_core_holidays.csv" data-conclusion="节假日特征存在噪声，保留 4 个核心节日效果最好。" data-steps="固定主线配置|缩减节假日集合|重建 future covariates|重新提交验证" tabindex="0">
+        <div class="card-media theme-cyan"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-wave"></div><div class="scene-grid"></div></div></div>
+        <div class="card-body"><h2>version7_3</h2><p>在保持主线模型、长周期结构和融合权重不变的情况下，只把节假日集合从 7 个候选缩减到 4 个核心节日，验证节假日特征中是否混入了噪声列。</p><span class="level-tag">0.38005</span></div>
+      </article>
+
+      <article class="card" data-group="factor" data-anim="transactions-off" data-summary="基于 version7_3 再做 past covariate 消融，只移除 transactions 这一条过去协变量，验证交易量时间序列是否真的提供了有效信息，结果显示移除后明显退化。" data-input="与 version7_3 相同" data-output="version7_4/submission_darts_no_transactions.csv" data-conclusion="transactions 仍然是有效过去协变量，不能移除。" data-steps="延续 version7_3 主线|关闭 transactions past covariate|重新训练并提交|验证协变量贡献" tabindex="0">
+        <div class="card-media theme-mint"><span class="subject-badge">单因子实验</span><div class="placeholder-scene"><div class="scene-screen"></div><div class="scene-bars"></div><div class="scene-grid"></div></div></div>
+        <div class="card-body"><h2>version7_4</h2><p>基于 version7_3 再做 past covariate 消融，只移除 `transactions` 这一条过去协变量，验证交易量时间序列是否真的提供了有效信息，结果显示移除后明显退化。</p><span class="level-tag">0.38110</span></div>
+      </article>
+    </section>
+  </main>
+
+  <div class="detail-modal" id="detail-modal" hidden>
+    <div class="detail-backdrop" id="detail-backdrop"></div>
+    <div class="detail-dialog">
+      <button class="detail-close" id="detail-close" type="button">×</button>
+      <div class="detail-layout">
+        <div class="detail-visual-wrap">
+          <div class="detail-kicker" id="detail-kicker">版本详情</div>
+          <div class="detail-visual" id="detail-visual">
+            <div class="card-media theme-dark">
+              <span class="subject-badge">集成主线</span>
+              <div class="placeholder-scene">
+                <div class="scene-screen dark"></div>
+                <div class="scene-wave"></div>
+                <div class="scene-grid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-content">
+          <h2 id="detail-title">version6</h2>
+          <div class="detail-score" id="detail-score">0.38022</div>
+          <p class="detail-description" id="detail-description"></p>
+
+          <div class="detail-meta-grid">
+            <div class="detail-meta-card">
+              <div class="detail-meta-label">输入</div>
+              <div class="detail-meta-value" id="detail-input"></div>
+            </div>
+            <div class="detail-meta-card">
+              <div class="detail-meta-label">输出</div>
+              <div class="detail-meta-value" id="detail-output"></div>
+            </div>
+            <div class="detail-meta-card detail-meta-card-wide">
+              <div class="detail-meta-label">结论</div>
+              <div class="detail-meta-value" id="detail-conclusion"></div>
+            </div>
+          </div>
+
+          <div class="detail-timeline-block">
+            <div class="detail-section-title">实验流程</div>
+            <div class="detail-timeline" id="detail-timeline"></div>
+          </div>
+
+          <div class="detail-nav">
+            <button class="detail-nav-btn" id="detail-prev" type="button">上一版</button>
+            <button class="detail-nav-btn" id="detail-next" type="button">下一版</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const filterButtons = Array.from(document.querySelectorAll(".filter-chip"));
+    const cards = Array.from(document.querySelectorAll(".card"));
+    const modal = document.getElementById("detail-modal");
+    const backdrop = document.getElementById("detail-backdrop");
+    const closeButton = document.getElementById("detail-close");
+    const detailKicker = document.getElementById("detail-kicker");
+    const detailTitle = document.getElementById("detail-title");
+    const detailScore = document.getElementById("detail-score");
+    const detailDescription = document.getElementById("detail-description");
+    const detailVisual = document.getElementById("detail-visual");
+    const detailInput = document.getElementById("detail-input");
+    const detailOutput = document.getElementById("detail-output");
+    const detailConclusion = document.getElementById("detail-conclusion");
+    const detailTimeline = document.getElementById("detail-timeline");
+    const detailPrev = document.getElementById("detail-prev");
+    const detailNext = document.getElementById("detail-next");
+    let activeCard = null;
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+
+        filterButtons.forEach((item) => {
+          item.classList.toggle("is-active", item === button);
+        });
+
+        const visibleCards = [];
+
+        cards.forEach((card) => {
+          const visible = filter === "all" || card.dataset.group === filter;
+          if (visible) {
+            card.classList.remove("is-hidden");
+            card.style.display = "";
+            visibleCards.push(card);
+          } else {
+            card.classList.add("is-filtered-out");
+            window.setTimeout(() => {
+              if (card.classList.contains("is-filtered-out")) {
+                card.style.display = "none";
+                card.classList.add("is-hidden");
+              }
+            }, 220);
+          }
+        });
+
+        requestAnimationFrame(() => {
+          visibleCards.forEach((card, index) => {
+            card.classList.remove("is-filtered-out");
+            card.style.animationDelay = `${index * 45}ms`;
+            card.classList.remove("is-staggered");
+            void card.offsetWidth;
+            card.classList.add("is-staggered");
+          });
+        });
+      });
+    });
+
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 45}ms`;
+      card.classList.add("is-staggered");
+    });
+
+    function renderTimeline(card) {
+      detailTimeline.innerHTML = "";
+      const steps = (card.dataset.steps || "").split("|").filter(Boolean);
+      steps.forEach((step, index) => {
+        const item = document.createElement("div");
+        item.className = "detail-timeline-item";
+        item.innerHTML = `
+          <div class="detail-timeline-index">${String(index + 1).padStart(2, "0")}</div>
+          <div class="detail-timeline-text">${step}</div>
+        `;
+        detailTimeline.appendChild(item);
+      });
+    }
+
+    function updateNavButtons(card) {
+      const index = cards.indexOf(card);
+      detailPrev.disabled = index <= 0;
+      detailNext.disabled = index >= cards.length - 1;
+    }
+
+    function openDetail(card) {
+      if (!(card instanceof HTMLElement)) return;
+      activeCard = card;
+      detailKicker.textContent = card.querySelector(".subject-badge")?.textContent || "";
+      detailTitle.textContent = card.querySelector("h2")?.textContent || "";
+      detailScore.textContent = card.querySelector(".level-tag")?.textContent || "";
+      detailDescription.textContent = card.dataset.summary || card.querySelector(".card-body p")?.textContent || "";
+      detailInput.textContent = card.dataset.input || "";
+      detailOutput.textContent = card.dataset.output || "";
+      detailConclusion.textContent = card.dataset.conclusion || "";
+      detailVisual.innerHTML = card.querySelector(".card-media")?.outerHTML || "";
+      renderTimeline(card);
+      updateNavButtons(card);
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => openDetail(card));
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openDetail(card);
+        }
+      });
+    });
+
+    detailPrev.addEventListener("click", () => {
+      if (!activeCard) return;
+      const index = cards.indexOf(activeCard);
+      if (index > 0) {
+        openDetail(cards[index - 1]);
+      }
+    });
+
+    detailNext.addEventListener("click", () => {
+      if (!activeCard) return;
+      const index = cards.indexOf(activeCard);
+      if (index < cards.length - 1) {
+        openDetail(cards[index + 1]);
+      }
+    });
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+    }
+
+    backdrop.addEventListener("click", closeModal);
+    closeButton.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.hidden) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
