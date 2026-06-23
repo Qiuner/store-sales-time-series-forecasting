@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="header">
+    <path fill="#163B66" d="M58,54 H58 A2,2 0 0 1 60,56 V108 A2,2 0 0 1 58,110 H58 A2,2 0 0 1 56,108 V56 A2,2 0 0 1 58,54 Z" />
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>这些技术在项目里的具体用法</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>FROM FUNCTIONS TO MODULES · HOW THE STACK MAPS TO THE CODEBASE</tspan>
+    </text>
+  </g>
+  <g id="top-map">
+    <path fill="#FFFFFF" d="M70,168 H1210 A14,14 0 0 1 1224,182 V272 A14,14 0 0 1 1210,286 H70 A14,14 0 0 1 56,272 V182 A14,14 0 0 1 70,168 Z" />
+    <text x="88" y="208" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>代码模块映射</tspan>
+    </text>
+    <text x="88" y="248" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" fill="#1F2937">
+      <tspan>version6/darts_ensemble.py</tspan><tspan font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif"> 负责主线 Darts 集成、协变量组织与训练器封装</tspan>
+    </text>
+    <text x="88" y="274" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" fill="#1F2937">
+      <tspan>version5/lgbm_recursive.py</tspan><tspan font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif"> 负责无泄漏递推 LightGBM 方案与逐日预测逻辑</tspan>
+    </text>
+  </g>
+  <g id="use-1">
+    <path fill="#FFFFFF" d="M70,320 H606 A14,14 0 0 1 620,334 V598 A14,14 0 0 1 606,612 H70 A14,14 0 0 1 56,598 V334 A14,14 0 0 1 70,320 Z" />
+    
+  <g transform="translate(84, 346) scale(1.08333)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M5 2h5v4h-5l0 -4" />
+    <path d="M15 10h5v4h-5l0 -4" />
+    <path d="M5 18h5v4h-5l0 -4" />
+    <path d="M5 10h5v4h-5l0 -4" />
+    <path d="M10 12h5" />
+    <path d="M7.5 6v4" />
+    <path d="M7.5 14v4" />
+  </g>
+    <text x="122" y="366" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="19" font-weight="800" fill="#1F2937">
+      <tspan>pandas / numpy 在哪里用？</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="412"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">preprocess_train</tspan><tspan>：补齐缺失日期与面板组合</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="440"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">preprocess_oil</tspan><tspan>：油价全日期补齐与插值</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="468"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">preprocess_transactions</tspan><tspan>：交易量按门店插值</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="496"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">merge_all_data</tspan><tspan>：多表合并、时间字段和索引构造</tspan>
+    </text></g>
+  <g id="use-2">
+    <path fill="#FFFFFF" d="M674,320 H1210 A14,14 0 0 1 1224,334 V598 A14,14 0 0 1 1210,612 H674 A14,14 0 0 1 660,598 V334 A14,14 0 0 1 674,320 Z" />
+    
+  <g transform="translate(688, 346) scale(1.08333)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M3 19l18 0" />
+    <path d="M5 7a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1l0 -8" />
+  </g>
+    <text x="726" y="366" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="19" font-weight="800" fill="#1F2937">
+      <tspan>模型和时间序列技术怎么落地？</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="688" y="412"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">LightGBM</tspan><tspan>：在 version5 里做递推预测，在 version6+ 里做 Darts 分支</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="688" y="440"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">XGBoost</tspan><tspan>：作为并行分支参与多组 lag 集成与最终融合</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="688" y="468"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">Darts</tspan><tspan>：在 get_target_series、get_covariates、Trainer 中组织主线骨架</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="688" y="496"><tspan>• </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">scikit-learn</tspan><tspan>：负责编码和静态协变量转换等通用预处理</tspan>
+    </text></g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>09</tspan>
+    </text>
+  </g>
+</svg>

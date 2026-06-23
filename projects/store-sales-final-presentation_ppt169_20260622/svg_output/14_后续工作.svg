@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="background">
+    <circle cx="1042" cy="180" r="120" fill="#2F80ED" fill-opacity="0.04"/>
+    <circle cx="208" cy="620" r="84" fill="#163B66" fill-opacity="0.04"/>
+  </g>
+  <g id="header">
+    <text x="74" y="92" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="38" font-weight="800" fill="#1F2937">
+      <tspan>后续工作</tspan>
+    </text>
+    <text x="74" y="120" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>NEXT STEPS · FROM COURSEWORK TO REPRODUCIBLE FRAMEWORK</tspan>
+    </text>
+  </g>
+  <g id="agenda">
+    <text x="76" y="222" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" fill="#1F2937">
+      <tspan fill="#2F80ED" font-weight="800">01</tspan><tspan> 继续筛选最优节假日最小子集</tspan>
+    </text>
+    <line x1="76" y1="240" x2="528" y2="240" stroke="#E6ECF2" stroke-width="1"/>
+    <text x="76" y="304" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" fill="#1F2937">
+      <tspan fill="#2F80ED" font-weight="800">02</tspan><tspan> 测试其他协变量和 lags 分支的边际贡献</tspan>
+    </text>
+    <line x1="76" y1="322" x2="612" y2="322" stroke="#E6ECF2" stroke-width="1"/>
+    <text x="76" y="386" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" fill="#1F2937">
+      <tspan fill="#2F80ED" font-weight="800">03</tspan><tspan> 微调 LightGBM 与 XGBoost 参数</tspan>
+    </text>
+    <line x1="76" y1="404" x2="520" y2="404" stroke="#E6ECF2" stroke-width="1"/>
+    <text x="76" y="468" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" fill="#1F2937">
+      <tspan fill="#2F80ED" font-weight="800">04</tspan><tspan> 将脚本式实验整理成可复现实验框架</tspan>
+    </text>
+    <line x1="76" y1="486" x2="586" y2="486" stroke="#E6ECF2" stroke-width="1"/>
+  </g>
+  <g id="closing-statement">
+    <text x="746" y="300" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="42" font-weight="800" fill="#163B66">
+      <tspan>From Coursework</tspan>
+    </text>
+    <text x="746" y="350" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="42" font-weight="800" fill="#163B66">
+      <tspan>to Reproducible Pipeline</tspan>
+    </text>
+    <text x="746" y="426" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" fill="#1F2937">
+      <tspan x="746" dy="0">当前结果已经证明主线方向成立，</tspan>
+      <tspan x="746" dy="30">下一步更重要的是让这个项目具备</tspan>
+      <tspan x="746" dy="30">更强的复现性、可维护性和持续优化能力。</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>14</tspan>
+    </text>
+  </g>
+</svg>

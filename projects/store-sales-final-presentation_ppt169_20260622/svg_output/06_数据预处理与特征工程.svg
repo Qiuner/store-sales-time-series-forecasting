@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>数据预处理与特征工程</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>PANEL COMPLETION · INTERPOLATION · HOLIDAY CLEANING · TIME FEATURES</tspan>
+    </text>
+  </g>
+  <g id="left-process">
+    <rect x="56" y="156" width="564" height="472" rx="12" fill="#FFFFFF"/>
+    <text x="88" y="204" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>主线预处理流程</tspan>
+    </text>
+    <g id="step-a">
+      <rect x="88" y="232" width="500" height="64" rx="12" fill="#EEF2F7"/>
+      <text x="112" y="270" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>1. 补齐训练面板缺失日期与 store-family 组合</tspan>
+      </text>
+    </g>
+    <g id="step-b">
+      <rect x="88" y="308" width="500" height="64" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+      <text x="112" y="346" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>2. sales 与 onpromotion 缺失补零</tspan>
+      </text>
+    </g>
+    <g id="step-c">
+      <rect x="88" y="384" width="500" height="64" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+      <text x="112" y="422" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>3. oil 全日期插值，transactions 按门店插值</tspan>
+      </text>
+    </g>
+    <g id="step-d">
+      <rect x="88" y="460" width="500" height="64" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+      <text x="112" y="498" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>4. 清洗节假日描述，剔除 transferred 假日</tspan>
+      </text>
+    </g>
+    <g id="step-e">
+      <rect x="88" y="536" width="500" height="64" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+      <text x="112" y="574" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>5. 合并多表并构造时间索引与节假日特征</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="right-features">
+    <rect x="660" y="156" width="564" height="472" rx="12" fill="#FFFFFF"/>
+    <text x="692" y="204" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>最终进入模型的特征类型</tspan>
+    </text>
+    <rect x="692" y="232" width="500" height="92" rx="12" fill="#EEF2F7"/>
+    <text x="720" y="266" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>time features</tspan>
+    </text>
+    <text x="720" y="294" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan>day, month, year, day_of_week, day_of_year, week_of_year, date_index</tspan>
+    </text>
+    <rect x="692" y="340" width="500" height="72" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+    <text x="720" y="370" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>market signals</tspan>
+    </text>
+    <text x="720" y="396" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan>oil, onpromotion, transactions</tspan>
+    </text>
+    <rect x="692" y="428" width="500" height="72" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+    <text x="720" y="458" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>holiday features</tspan>
+    </text>
+    <text x="720" y="484" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan>work_day + selected national holidays</tspan>
+    </text>
+    <rect x="692" y="516" width="500" height="84" rx="12" fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1"/>
+    <text x="720" y="548" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>design implication</tspan>
+    </text>
+    <text x="720" y="576" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan x="720" dy="0">模型质量并不只取决于算法本身，</tspan>
+      <tspan x="720" dy="24">更取决于原始面板是否规整、协变量是否对齐。</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>06</tspan>
+    </text>
+  </g>
+</svg>

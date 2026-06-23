@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="header">
+    <path fill="#163B66" d="M58,54 H58 A2,2 0 0 1 60,56 V108 A2,2 0 0 1 58,110 H58 A2,2 0 0 1 56,108 V56 A2,2 0 0 1 58,54 Z" />
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>项目收获与反思</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>BASELINE · VALIDATION · EXPERIMENT DISCIPLINE</tspan>
+    </text>
+  </g>
+  <g id="card-1">
+    <path fill="#FFFFFF" d="M70,190 H402 A14,14 0 0 1 416,204 V554 A14,14 0 0 1 402,568 H70 A14,14 0 0 1 56,554 V204 A14,14 0 0 1 70,190 Z" />
+    
+  <g transform="translate(84, 220) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+    <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+    <path d="M9.7 17l4.6 0" />
+  </g>
+    <text x="126" y="242" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>基线先行</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="286">简单模型的价值，不在于最终成绩，</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="314">而在于它能快速告诉我们：</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="84" y="342">后续复杂改动到底有没有意义。</text><path fill="#EEF2F7" d="M94,404 H378 A10,10 0 0 1 388,414 V512 A10,10 0 0 1 378,522 H94 A10,10 0 0 1 84,512 V414 A10,10 0 0 1 94,404 Z" />
+    <text x="104" y="438" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>结论</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="15" x="104" y="468">没有基线，就无法判断一次优化</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="15" x="104" y="492">是“真的变好”还是“只是更复杂”。</text></g>
+  <g id="card-2">
+    <path fill="#FFFFFF" d="M474,190 H806 A14,14 0 0 1 820,204 V554 A14,14 0 0 1 806,568 H474 A14,14 0 0 1 460,554 V204 A14,14 0 0 1 474,190 Z" />
+    
+  <g transform="translate(488, 220) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+    <path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+  </g>
+    <text x="530" y="242" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>过程一致</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="488" y="286">时间序列项目里，最危险的问题往往</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="488" y="314">不是模型弱，而是线下验证方式</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="488" y="342">与真实预测流程并不一致。</text><path fill="#EEF2F7" d="M498,404 H782 A10,10 0 0 1 792,414 V512 A10,10 0 0 1 782,522 H498 A10,10 0 0 1 488,512 V414 A10,10 0 0 1 498,404 Z" />
+    <text x="508" y="438" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>结论</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="15" x="508" y="468">递推预测、协变量可见性和时间切分</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="15" x="508" y="492">必须和真实提交场景保持一致。</text></g>
+  <g id="card-3">
+    <path fill="#FFFFFF" d="M878,190 H1210 A14,14 0 0 1 1224,204 V554 A14,14 0 0 1 1210,568 H878 A14,14 0 0 1 864,554 V204 A14,14 0 0 1 878,190 Z" />
+    
+  <g transform="translate(892, 220) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M7 8l0 8" />
+    <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+    <path d="M14 14l3 -3l3 3" />
+  </g>
+    <text x="934" y="242" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>实验纪律</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="892" y="286">真正让这个项目形成价值的，不只是</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="892" y="314">分数本身，而是每次只改一个因子、</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="892" y="342">保留版本和结论记录的方式。</text><path fill="#EEF2F7" d="M902,404 H1186 A10,10 0 0 1 1196,414 V512 A10,10 0 0 1 1186,522 H902 A10,10 0 0 1 892,512 V414 A10,10 0 0 1 902,404 Z" />
+    <text x="912" y="438" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>结论</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="15" x="912" y="468">课程项目也可以有接近竞赛项目的</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="15" x="912" y="492">实验逻辑与版本管理意识。</text></g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>13</tspan>
+    </text>
+  </g>
+</svg>

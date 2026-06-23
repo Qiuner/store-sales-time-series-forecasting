@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <marker id="mcArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#9CA3AF" />
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="header">
+    <path fill="#163B66" d="M58,54 H58 A2,2 0 0 1 60,56 V108 A2,2 0 0 1 58,110 H58 A2,2 0 0 1 56,108 V56 A2,2 0 0 1 58,54 Z" />
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>主线模型结构</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>TARGET SERIES · COVARIATES · ENSEMBLE STACK</tspan>
+    </text>
+  </g>
+  <g id="chartArea">
+    
+    <path fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1.2" stroke-dasharray="6 4" d="M132,166 H1198 A12,12 0 0 1 1210,178 V580 A12,12 0 0 1 1198,592 H132 A12,12 0 0 1 120,580 V178 A12,12 0 0 1 132,166 Z" />
+    <text x="665" y="194" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" font-weight="700" fill="#2F80ED" letter-spacing="1.2" text-anchor="middle">
+      <tspan>PARENT CONTAINER · DARTS MULTI-SERIES FORECASTING PIPELINE</tspan>
+    </text>
+    <g id="card-target">
+      <path fill="#FFFFFF" d="M168,222 H442 A14,14 0 0 1 456,236 V468 A14,14 0 0 1 442,482 H168 A14,14 0 0 1 154,468 V236 A14,14 0 0 1 168,222 Z" />
+      <path fill="#2F80ED" d="M157,222 H157 A3,3 0 0 1 160,225 V267 A3,3 0 0 1 157,270 H157 A3,3 0 0 1 154,267 V225 A3,3 0 0 1 157,222 Z" />
+      
+  <g transform="translate(178, 234) scale(1.08333)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M12 4l-8 4l8 4l8 -4l-8 -4" />
+    <path d="M4 12l8 4l8 -4" />
+    <path d="M4 16l8 4l8 -4" />
+  </g>
+      <text x="216" y="254" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+        <tspan>Target Series</tspan>
+      </text>
+      <path fill="#EEF2F7" d="M186,286 H424 A8,8 0 0 1 432,294 V316 A8,8 0 0 1 424,324 H186 A8,8 0 0 1 178,316 V294 A8,8 0 0 1 186,286 Z" />
+      <text x="305" y="311" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>family-wise sales series</tspan>
+      </text>
+      <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="178" y="356"><tspan>按</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800"> family </tspan><tspan>拆分门店销量序列，</tspan>
+        </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="178" y="382">每个 family 下再以门店形成多条</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="178" y="408">Darts TimeSeries 输入。</text></g>
+    <line x1="462" y1="352" x2="506" y2="352" stroke="#9CA3AF" stroke-width="3" marker-end="url(#mcArrow)" />
+    <g id="card-covs">
+      <path fill="#FFFFFF" d="M520,206 H810 A14,14 0 0 1 824,220 V484 A14,14 0 0 1 810,498 H520 A14,14 0 0 1 506,484 V220 A14,14 0 0 1 520,206 Z" />
+      <path fill="#27AE60" d="M509,206 H509 A3,3 0 0 1 512,209 V251 A3,3 0 0 1 509,254 H509 A3,3 0 0 1 506,251 V209 A3,3 0 0 1 509,206 Z" />
+      
+  <g transform="translate(530, 218) scale(1.08333)" fill="none" stroke="#27AE60" stroke-width="2">
+    <path d="M4 6a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" />
+    <path d="M4 6v6a8 3 0 0 0 16 0v-6" />
+    <path d="M4 12v6a8 3 0 0 0 16 0v-6" />
+  </g>
+      <text x="568" y="238" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+        <tspan>Covariates</tspan>
+      </text>
+      <path fill="#EEF2F7" d="M540,270 H790 A10,10 0 0 1 800,280 V308 A10,10 0 0 1 790,318 H540 A10,10 0 0 1 530,308 V280 A10,10 0 0 1 540,270 Z" />
+      <text x="550" y="300" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+        <tspan>static</tspan>
+      </text>
+      <text x="640" y="300" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#1F2937">
+        <tspan>city / state / type / cluster</tspan>
+      </text>
+      <path fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1" d="M540,330 H790 A10,10 0 0 1 800,340 V368 A10,10 0 0 1 790,378 H540 A10,10 0 0 1 530,368 V340 A10,10 0 0 1 540,330 Z" />
+      <text x="550" y="360" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+        <tspan>past</tspan>
+      </text>
+      <text x="640" y="360" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#1F2937">
+        <tspan>transactions</tspan>
+      </text>
+      <path fill="#FFFFFF" stroke="#D9E1EA" stroke-width="1" d="M540,390 H790 A10,10 0 0 1 800,400 V460 A10,10 0 0 1 790,470 H540 A10,10 0 0 1 530,460 V400 A10,10 0 0 1 540,390 Z" />
+      <text x="550" y="420" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+        <tspan>future</tspan>
+      </text>
+      <text x="640" y="420" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#1F2937">
+        <tspan>oil / onpromotion / date features / holidays</tspan>
+      </text>
+      <text x="640" y="448" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280">
+        <tspan>future_ma_cols = oil, onpromotion</tspan>
+      </text>
+    </g>
+    <line x1="830" y1="352" x2="874" y2="352" stroke="#9CA3AF" stroke-width="3" marker-end="url(#mcArrow)" />
+    <g id="card-ensemble">
+      <path fill="#FFFFFF" d="M888,194 H1160 A14,14 0 0 1 1174,208 V496 A14,14 0 0 1 1160,510 H888 A14,14 0 0 1 874,496 V208 A14,14 0 0 1 888,194 Z" />
+      <path fill="#163B66" d="M877,194 H877 A3,3 0 0 1 880,197 V239 A3,3 0 0 1 877,242 H877 A3,3 0 0 1 874,239 V197 A3,3 0 0 1 877,194 Z" />
+      
+  <g transform="translate(898, 206) scale(1.08333)" fill="none" stroke="#163B66" stroke-width="2">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6" />
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10" />
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14" />
+    <path d="M4 20h14" />
+  </g>
+      <text x="936" y="226" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+        <tspan>Ensemble</tspan>
+      </text>
+      <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="898" y="272"><tspan>• 4 组 LightGBMModel，不同</tspan>
+        <tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">lags</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="898" y="320"><tspan>• 4 组 XGBModel，不同</tspan>
+        <tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">lags</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="898" y="368">• 每个模型分支做两轮预测平均</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="898" y="416"><tspan>• 最终按</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">0.40 / 0.60</tspan><tspan>加权融合</tspan>
+      </text><path fill="#EEF2F7" d="M906,448 H1142 A8,8 0 0 1 1150,456 V480 A8,8 0 0 1 1142,488 H906 A8,8 0 0 1 898,480 V456 A8,8 0 0 1 906,448 Z" />
+      <text x="1024" y="474" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>输出未来 16 天销量预测</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>05</tspan>
+    </text>
+  </g>
+</svg>

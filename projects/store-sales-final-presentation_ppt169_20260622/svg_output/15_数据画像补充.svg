@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>附录：数据画像补充</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>DATA PROFILE SNAPSHOTS · FIELD DISTRIBUTIONS · AUXILIARY TABLES</tspan>
+    </text>
+  </g>
+  <g id="left-summary">
+    <rect x="56" y="152" width="312" height="510" rx="14" fill="#FFFFFF"/>
+    <text x="84" y="198" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" font-weight="800" fill="#163B66">
+      <tspan>这页补充的数据观察</tspan>
+    </text>
+    <text x="84" y="238" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="84" dy="0">1. </tspan><tspan fill="#2F80ED" font-weight="800">train.csv</tspan><tspan> 规模最大，</tspan>
+      <tspan x="84" dy="28">约 300 万行，是主训练面板。</tspan>
+    </text>
+    <text x="84" y="308" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="84" dy="0">2. </tspan><tspan fill="#2F80ED" font-weight="800">test.csv</tspan><tspan> 只覆盖未来 </tspan><tspan fill="#2F80ED" font-weight="800">16 天</tspan><tspan>，</tspan>
+      <tspan x="84" dy="28">结构和 train 基本一致，只缺少 sales。</tspan>
+    </text>
+    <text x="84" y="378" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="84" dy="0">3. </tspan><tspan fill="#2F80ED" font-weight="800">stores / transactions / oil / holidays</tspan>
+      <tspan x="84" dy="28">分别提供门店静态属性、客流、油价和节假日信息。</tspan>
+    </text>
+    <text x="84" y="462" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="84" dy="0">4. 从分布图上可以看出，</tspan>
+      <tspan x="84" dy="28">销量和促销都呈现明显长尾，</tspan>
+      <tspan x="84" dy="28">这也是后面做 </tspan><tspan fill="#2F80ED" font-weight="800">log1p</tspan><tspan> 和多模型集成的原因之一。</tspan>
+    </text>
+    <rect x="84" y="566" width="256" height="70" rx="12" fill="#EEF2F7"/>
+    <text x="104" y="596" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>一句话总结</tspan>
+    </text>
+    <text x="104" y="622" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#1F2937">
+      <tspan>主表大、辅表多、分布偏态强，</tspan>
+      <tspan x="104" dy="22">所以预处理和协变量治理非常关键。</tspan>
+    </text>
+  </g>
+  <g id="train-panel">
+    <rect x="392" y="152" width="392" height="196" rx="14" fill="#FFFFFF"/>
+    <text x="414" y="184" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>train.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-02-39.jpg" x="414" y="196" width="348" height="132" preserveAspectRatio="xMidYMid meet"/>
+    <text x="414" y="336" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>训练主表：日期范围 2013-01-01 到 2017-08-15，包含 id、date、store、family、sales、onpromotion。</tspan>
+    </text>
+  </g>
+  <g id="test-panel">
+    <rect x="808" y="152" width="416" height="196" rx="14" fill="#FFFFFF"/>
+    <text x="830" y="184" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>test.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-03-16.jpg" x="830" y="196" width="372" height="132" preserveAspectRatio="xMidYMid meet"/>
+    <text x="830" y="336" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>测试集保持同样粒度，但没有 sales，需要预测 2017-08-16 到 2017-08-31 的结果。</tspan>
+    </text>
+  </g>
+  <g id="stores-panel">
+    <rect x="392" y="372" width="392" height="134" rx="14" fill="#FFFFFF"/>
+    <text x="414" y="402" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>stores.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-03-29.jpg" x="414" y="410" width="348" height="72" preserveAspectRatio="xMidYMid meet"/>
+    <text x="414" y="496" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>门店静态属性：城市、州、省份类型和 cluster。</tspan>
+    </text>
+  </g>
+  <g id="transactions-panel">
+    <rect x="808" y="372" width="416" height="134" rx="14" fill="#FFFFFF"/>
+    <text x="830" y="402" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>transactions.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-03-02.jpg" x="830" y="410" width="372" height="72" preserveAspectRatio="xMidYMid meet"/>
+    <text x="830" y="496" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>交易笔数分布右偏明显，是很重要的过去协变量。</tspan>
+    </text>
+  </g>
+  <g id="bottom-panels">
+    <rect x="392" y="530" width="258" height="132" rx="14" fill="#FFFFFF"/>
+    <text x="414" y="560" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>oil.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-03-52.jpg" x="414" y="568" width="214" height="68" preserveAspectRatio="xMidYMid meet"/>
+    <text x="414" y="650" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>外部经济变量，后续做了全日期插值。</tspan>
+    </text>
+
+    <rect x="676" y="530" width="274" height="132" rx="14" fill="#FFFFFF"/>
+    <text x="698" y="560" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>holidays_events.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-04-15.jpg" x="698" y="568" width="230" height="68" preserveAspectRatio="xMidYMid meet"/>
+    <text x="698" y="650" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>节假日类型很多，后续只保留稳定有效的核心节日。</tspan>
+    </text>
+
+    <rect x="976" y="530" width="248" height="132" rx="14" fill="#FFFFFF"/>
+    <text x="998" y="560" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>sample_submission.csv</tspan>
+    </text>
+    <image href="../images/Snipaste_2026-06-23_11-03-41.jpg" x="998" y="568" width="204" height="68" preserveAspectRatio="xMidYMid meet"/>
+    <text x="998" y="650" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>最终提交只保留 id 和 sales 两列。</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="1218" y="684" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>15</tspan>
+    </text>
+  </g>
+</svg>

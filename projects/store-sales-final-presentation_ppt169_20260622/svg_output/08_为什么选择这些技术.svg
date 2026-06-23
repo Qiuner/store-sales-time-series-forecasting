@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>为什么选择这些技术</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>EFFICIENCY · MODEL FITNESS · TIME-SERIES INTERFACE · EXPERIMENT ITERATION</tspan>
+    </text>
+  </g>
+  <g id="left-principles">
+    <rect x="56" y="170" width="420" height="424" rx="14" fill="#FFFFFF"/>
+    <text x="88" y="212" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" font-weight="800" fill="#163B66">
+      <tspan>技术选择原则</tspan>
+    </text>
+    <text x="88" y="256" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" fill="#1F2937">
+      <tspan x="88" dy="0">1. 要能</tspan><tspan fill="#2F80ED" font-weight="800">高效处理多表数据</tspan><tspan>，因为项目输入并不只是一张 train 表。</tspan>
+      <tspan x="88" dy="32">2. 要能</tspan><tspan fill="#2F80ED" font-weight="800">适配表格型时间序列特征</tspan><tspan>，尤其是大量 lag 与 rolling 特征。</tspan>
+      <tspan x="88" dy="32">3. 要能</tspan><tspan fill="#2F80ED" font-weight="800">支持多序列与协变量接口</tspan><tspan>，否则主线方案会非常难组织。</tspan>
+      <tspan x="88" dy="32">4. 要能</tspan><tspan fill="#2F80ED" font-weight="800">快速做版本实验</tspan><tspan>，便于每次只改一个因子。</tspan>
+    </text>
+  </g>
+  <g id="right-reasons">
+    <rect x="516" y="170" width="708" height="424" rx="14" fill="#FFFFFF"/>
+    <text x="548" y="212" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" font-weight="800" fill="#163B66">
+      <tspan>技术与理由的对应关系</tspan>
+    </text>
+    <g id="row-1">
+      <text x="548" y="264" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#163B66">
+        <tspan>Python + pandas / numpy</tspan>
+      </text>
+      <text x="820" y="264" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>适合快速完成清洗、插值、拼表、时间字段构造与实验脚本组织。</tspan>
+      </text>
+    </g>
+    <line x1="548" y1="282" x2="1192" y2="282" stroke="#E6ECF2" stroke-width="1"/>
+    <g id="row-2">
+      <text x="548" y="334" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#163B66">
+        <tspan>LightGBM / XGBoost</tspan>
+      </text>
+      <text x="820" y="334" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>对异构表格特征和非线性关系建模能力强，也适合做多组 lag 分支。</tspan>
+      </text>
+    </g>
+    <line x1="548" y1="352" x2="1192" y2="352" stroke="#E6ECF2" stroke-width="1"/>
+    <g id="row-3">
+      <text x="548" y="404" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#163B66">
+        <tspan>Darts</tspan>
+      </text>
+      <text x="820" y="404" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>把目标序列、静态协变量、过去协变量和未来协变量组织进统一时间序列接口。</tspan>
+      </text>
+    </g>
+    <line x1="548" y1="422" x2="1192" y2="422" stroke="#E6ECF2" stroke-width="1"/>
+    <g id="row-4">
+      <text x="548" y="474" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#163B66">
+        <tspan>scikit-learn components</tspan>
+      </text>
+      <text x="820" y="474" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>负责通用预处理、编码与流水线补位，让主线方案更稳定、更标准化。</tspan>
+      </text>
+    </g>
+    <line x1="548" y1="492" x2="1192" y2="492" stroke="#E6ECF2" stroke-width="1"/>
+    <g id="row-5">
+      <text x="548" y="544" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#163B66">
+        <tspan>Jupyter / script-based iteration</tspan>
+      </text>
+      <text x="820" y="544" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>方便记录实验链条，既能探索，也能逐步沉淀成版本脚本。</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>08</tspan>
+    </text>
+  </g>
+</svg>

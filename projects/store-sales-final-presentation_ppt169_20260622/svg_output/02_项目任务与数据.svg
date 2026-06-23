@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>项目任务与数据输入</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>TASK DEFINITION · DATA SCALE · MULTI-TABLE INPUTS</tspan>
+    </text>
+  </g>
+  <g id="left-brief">
+    <rect x="56" y="156" width="454" height="502" rx="12" fill="#FFFFFF"/>
+    <text x="86" y="206" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>任务定义</tspan>
+    </text>
+    <text x="86" y="248" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="23" font-weight="700" fill="#1F2937">
+      <tspan>预测未来 16 天、每店、每品类的销量</tspan>
+    </text>
+    <text x="86" y="288" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" fill="#1F2937">
+      <tspan>预测粒度是</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800"> date + store_nbr + family </tspan><tspan>。</tspan>
+    </text>
+    <text x="86" y="326" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="86" dy="0">核心目标是根据历史销量、促销、交易量、油价和</tspan>
+      <tspan x="86" dy="28">节假日信息，对测试集中的未来 </tspan><tspan fill="#2F80ED" font-weight="800">16 天</tspan><tspan>销量</tspan>
+      <tspan x="86" dy="28">进行预测，并以 </tspan><tspan fill="#2F80ED" font-weight="800">RMSLE</tspan><tspan> 作为评价指标。</tspan>
+    </text>
+    <line x1="86" y1="388" x2="480" y2="388" stroke="#E6ECF2" stroke-width="1"/>
+    <g id="kpi-row">
+      <rect x="86" y="416" width="104" height="88" rx="12" fill="#EEF2F7"/>
+      <text x="138" y="454" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="32" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>54</tspan>
+      </text>
+      <text x="138" y="482" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">
+        <tspan>门店数</tspan>
+      </text>
+      <rect x="202" y="416" width="104" height="88" rx="12" fill="#EEF2F7"/>
+      <text x="254" y="454" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="32" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>33</tspan>
+      </text>
+      <text x="254" y="482" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">
+        <tspan>商品大类</tspan>
+      </text>
+      <rect x="318" y="416" width="162" height="88" rx="12" fill="#EEF2F7"/>
+      <text x="399" y="454" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="32" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>2013-2017</tspan>
+      </text>
+      <text x="399" y="482" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">
+        <tspan>训练时间范围</tspan>
+      </text>
+    </g>
+    <g id="core-fields">
+      <text x="86" y="546" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#163B66">
+        <tspan>关键字段与含义</tspan>
+      </text>
+      <use data-icon="tabler-outline/target" x="86" y="564" width="20" height="20" fill="#2F80ED" stroke-width="2"/>
+      <text x="116" y="580" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937">
+        <tspan>sales</tspan>
+      </text>
+      <text x="198" y="580" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#6B7280">
+        <tspan>目标变量，表示销量</tspan>
+      </text>
+      <use data-icon="tabler-outline/database" x="86" y="596" width="20" height="20" fill="#2F80ED" stroke-width="2"/>
+      <text x="116" y="612" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937">
+        <tspan>onpromotion</tspan>
+      </text>
+      <text x="242" y="612" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#6B7280">
+        <tspan>促销中的商品数量</tspan>
+      </text>
+      <use data-icon="tabler-outline/chart-bar" x="86" y="628" width="20" height="20" fill="#2F80ED" stroke-width="2"/>
+      <text x="116" y="644" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937">
+        <tspan>transactions / oil / holidays</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="data-scale-chart">
+    <!-- chart-plot-area: 556,220,1220,470 -->
+    <rect x="542" y="156" width="682" height="334" rx="12" fill="#FFFFFF"/>
+    <text x="572" y="206" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>数据规模对比</tspan>
+    </text>
+    <line x1="636" y1="250" x2="1210" y2="250" stroke="#E6ECF2" stroke-width="1"/>
+    <line x1="636" y1="300" x2="1210" y2="300" stroke="#E6ECF2" stroke-width="1"/>
+    <line x1="636" y1="350" x2="1210" y2="350" stroke="#E6ECF2" stroke-width="1"/>
+    <line x1="636" y1="400" x2="1210" y2="400" stroke="#E6ECF2" stroke-width="1"/>
+    <line x1="636" y1="450" x2="1210" y2="450" stroke="#E6ECF2" stroke-width="1"/>
+    <line x1="636" y1="470" x2="1210" y2="470" stroke="#D9E1EA" stroke-width="1.5"/>
+    <text x="636" y="488" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" fill="#9CA3AF">0</text>
+    <text x="772" y="488" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" fill="#9CA3AF">0.75M</text>
+    <text x="906" y="488" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" fill="#9CA3AF">1.5M</text>
+    <text x="1040" y="488" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" fill="#9CA3AF">2.25M</text>
+    <text x="1168" y="488" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" fill="#9CA3AF">3.0M</text>
+    <text x="572" y="248" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#1F2937">
+      <tspan>train.csv</tspan>
+    </text>
+    <rect x="636" y="228" width="574" height="26" rx="8" fill="#163B66"/>
+    <text x="1198" y="246" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="13" font-weight="800" fill="#163B66" text-anchor="end">
+      <tspan>3,000,888 行</tspan>
+    </text>
+    <text x="572" y="298" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#1F2937">
+      <tspan>transactions.csv</tspan>
+    </text>
+    <rect x="636" y="278" width="16" height="26" rx="8" fill="#2F80ED"/>
+    <text x="764" y="296" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="13" font-weight="800" fill="#2F80ED" text-anchor="middle">
+      <tspan>83,488 行</tspan>
+    </text>
+    <text x="572" y="348" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#1F2937">
+      <tspan>test.csv</tspan>
+    </text>
+    <rect x="636" y="328" width="6" height="26" rx="3" fill="#27AE60"/>
+    <text x="740" y="346" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="13" font-weight="800" fill="#27AE60" text-anchor="middle">
+      <tspan>28,512 行</tspan>
+    </text>
+    <text x="572" y="398" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#1F2937">
+      <tspan>oil.csv</tspan>
+    </text>
+    <rect x="636" y="378" width="3" height="26" rx="1.5" fill="#6B7280"/>
+    <text x="716" y="396" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="13" font-weight="800" fill="#6B7280" text-anchor="middle">
+      <tspan>1,218 行</tspan>
+    </text>
+    <text x="572" y="448" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#1F2937">
+      <tspan>holidays_events.csv</tspan>
+    </text>
+    <rect x="636" y="428" width="2" height="26" rx="1" fill="#D64545"/>
+    <text x="708" y="446" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="13" font-weight="800" fill="#D64545" text-anchor="middle">
+      <tspan>350 行</tspan>
+    </text>
+  </g>
+  <g id="bottom-tables">
+    <rect x="542" y="508" width="682" height="150" rx="12" fill="#FFFFFF"/>
+    <text x="572" y="552" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>辅助数据表角色</tspan>
+    </text>
+    <rect x="572" y="574" width="190" height="54" rx="10" fill="#EEF2F7"/>
+    <text x="592" y="606" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>stores.csv</tspan>
+    </text>
+    <text x="592" y="626" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>门店城市、类型、cluster</tspan>
+    </text>
+    <rect x="784" y="574" width="190" height="54" rx="10" fill="#EEF2F7"/>
+    <text x="804" y="606" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>sample_submission.csv</tspan>
+    </text>
+    <text x="804" y="626" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>提交模板，28,512 条预测</tspan>
+    </text>
+    <rect x="996" y="574" width="198" height="54" rx="10" fill="#EEF2F7"/>
+    <text x="1016" y="606" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" font-weight="800" fill="#163B66">
+      <tspan>建模难点</tspan>
+    </text>
+    <text x="1016" y="626" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280">
+      <tspan>多表对齐与协变量治理</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="1218" y="682" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>02</tspan>
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>关键实验结论</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>ONLY A FEW FACTORS PRODUCED STABLE SCORE IMPROVEMENT</tspan>
+    </text>
+  </g>
+  <g id="chartArea">
+    <!-- chart-plot-area: 60,156,1220,624 -->
+    <g id="card-1">
+      <rect x="60" y="156" width="560" height="224" rx="18" fill="#EEF2F7"/>
+      <path d="M245 156 h190 a25 25 0 0 1 25 25 v25 h-240 v-25 a25 25 0 0 1 25 -25 Z" fill="#2F80ED"/>
+      <text x="340" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+        <tspan>融合权重</tspan>
+      </text>
+      <rect x="82" y="222" width="516" height="136" rx="12" fill="#FFFFFF"/>
+      <text x="108" y="264" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>最终融合权重不是装饰参数，而是有效优化因子。</tspan>
+      </text>
+      <text x="108" y="304" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>从</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">0.60 / 0.40</tspan><tspan> 调到 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">0.40 / 0.60</tspan><tspan> 后，</tspan>
+        <tspan x="108" dy="26">分数从 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">0.38041</tspan><tspan> 改善到 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">0.38015</tspan><tspan> 附近。</tspan>
+      </text>
+    </g>
+    <g id="card-2">
+      <rect x="660" y="156" width="560" height="224" rx="18" fill="#EEF2F7"/>
+      <path d="M845 156 h190 a25 25 0 0 1 25 25 v25 h-240 v-25 a25 25 0 0 1 25 -25 Z" fill="#27AE60"/>
+      <text x="940" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+        <tspan>长周期滞后</tspan>
+      </text>
+      <rect x="682" y="222" width="516" height="136" rx="12" fill="#FFFFFF"/>
+      <text x="708" y="264" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>lag 730 与 lag 365 都不能删除。</tspan>
+      </text>
+      <text x="708" y="304" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>去掉 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#27AE60" font-weight="800">730</tspan><tspan> 后退化到 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#27AE60" font-weight="800">0.38138</tspan><tspan>，</tspan>
+        <tspan x="708" dy="26">去掉 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#27AE60" font-weight="800">365</tspan><tspan> 后退化到 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#27AE60" font-weight="800">0.38074</tspan><tspan>。</tspan>
+      </text>
+    </g>
+    <g id="card-3">
+      <rect x="60" y="400" width="560" height="224" rx="18" fill="#EEF2F7"/>
+      <path d="M245 400 h190 a25 25 0 0 1 25 25 v25 h-240 v-25 a25 25 0 0 1 25 -25 Z" fill="#163B66"/>
+      <text x="340" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+        <tspan>节假日去噪</tspan>
+      </text>
+      <rect x="82" y="466" width="516" height="136" rx="12" fill="#FFFFFF"/>
+      <text x="108" y="508" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>节假日特征不是越多越好，存在噪声项。</tspan>
+      </text>
+      <text x="108" y="548" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>从 7 个候选节日缩减为 4 个核心节日后，</tspan>
+        <tspan x="108" dy="26">成绩由 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#163B66" font-weight="800">0.38015</tspan><tspan> 提升到 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#163B66" font-weight="800">0.38005</tspan><tspan>。</tspan>
+      </text>
+    </g>
+    <g id="card-4">
+      <rect x="660" y="400" width="560" height="224" rx="18" fill="#EEF2F7"/>
+      <path d="M845 400 h190 a25 25 0 0 1 25 25 v25 h-240 v-25 a25 25 0 0 1 25 -25 Z" fill="#D64545"/>
+      <text x="940" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+        <tspan>transactions 协变量</tspan>
+      </text>
+      <rect x="682" y="466" width="516" height="136" rx="12" fill="#FFFFFF"/>
+      <text x="708" y="508" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#1F2937">
+        <tspan>过去协变量中的 transactions 仍然有效。</tspan>
+      </text>
+      <text x="708" y="548" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+        <tspan>在 version7.3 基础上移除它之后，</tspan>
+        <tspan x="708" dy="26">分数回退到 </tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#D64545" font-weight="800">0.38110</tspan><tspan>。</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>11</tspan>
+    </text>
+  </g>
+</svg>

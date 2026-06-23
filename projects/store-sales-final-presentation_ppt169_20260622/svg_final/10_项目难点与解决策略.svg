@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="header">
+    <path fill="#163B66" d="M58,54 H58 A2,2 0 0 1 60,56 V108 A2,2 0 0 1 58,110 H58 A2,2 0 0 1 56,108 V56 A2,2 0 0 1 58,54 Z" />
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>项目难点与解决策略</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>ALIGNMENT · VALIDATION · FEATURE NOISE · PIPELINE ORGANIZATION</tspan>
+    </text>
+  </g>
+  <g id="left-problems">
+    <path fill="#FFFFFF" d="M70,170 H564 A14,14 0 0 1 578,184 V604 A14,14 0 0 1 564,618 H70 A14,14 0 0 1 56,604 V184 A14,14 0 0 1 70,170 Z" />
+    <text x="88" y="212" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" font-weight="800" fill="#163B66">
+      <tspan>项目难点</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="264">1. 多张表、不同粒度、不同日期范围</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="290">放在一起之后，数据很容易错位。</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="332">2. 树模型做多步预测时，线下验证</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="358">很容易不小心看到未来信息。</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="400">3. 特征和协变量很多，但不代表</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="426">全部都有效，甚至可能引入噪声。</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="468">4. 主线方案进入多序列、多模型、多协变量后，</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="494">代码组织和实验管理复杂度明显上升。</text></g>
+  <g id="right-solutions">
+    <path fill="#FFFFFF" d="M656,170 H1210 A14,14 0 0 1 1224,184 V604 A14,14 0 0 1 1210,618 H656 A14,14 0 0 1 642,604 V184 A14,14 0 0 1 656,170 Z" />
+    
+  <g transform="translate(670, 198) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033" />
+    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+  </g>
+    <text x="712" y="220" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" font-weight="800" fill="#163B66">
+      <tspan>对应解决策略</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="270"><tspan>• 先用统一面板补齐策略，把</tspan>
+      <tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">train / oil / transactions / holidays</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="294">逐步对齐到同一时间轴和同一业务粒度上。</text><line x1="670" y1="314" x2="1192" y2="314" stroke="#E6ECF2" stroke-width="1" />
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="358"><tspan>• 在</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">version5</tspan><tspan> 里改成逐日递推预测，</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="382">确保未来特征只能依赖历史和前一步预测值。</text><line x1="670" y1="402" x2="1192" y2="402" stroke="#E6ECF2" stroke-width="1" />
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="446"><tspan>• 用单因子实验逐个测试</tspan>
+      <tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">lags</tspan><tspan>、</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">holidays</tspan><tspan>、</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">transactions</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="470">的边际贡献，避免凭感觉加特征。</text><line x1="670" y1="490" x2="1192" y2="490" stroke="#E6ECF2" stroke-width="1" />
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="534"><tspan>• 在</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">Darts + Trainer</tspan><tspan> 框架下统一多序列和协变量接口，</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="670" y="558">并通过版本目录保留每次改动和提交结果。</text></g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>10</tspan>
+    </text>
+  </g>
+</svg>

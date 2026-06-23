@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>项目收获与反思</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>BASELINE · VALIDATION · EXPERIMENT DISCIPLINE</tspan>
+    </text>
+  </g>
+  <g id="card-1">
+    <rect x="56" y="190" width="360" height="378" rx="14" fill="#FFFFFF"/>
+    <use data-icon="tabler-outline/bulb" x="84" y="220" width="28" height="28" fill="#2F80ED" stroke-width="2"/>
+    <text x="126" y="242" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>基线先行</tspan>
+    </text>
+    <text x="84" y="286" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="84" dy="0">简单模型的价值，不在于最终成绩，</tspan>
+      <tspan x="84" dy="28">而在于它能快速告诉我们：</tspan>
+      <tspan x="84" dy="28">后续复杂改动到底有没有意义。</tspan>
+    </text>
+    <rect x="84" y="404" width="304" height="118" rx="10" fill="#EEF2F7"/>
+    <text x="104" y="438" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>结论</tspan>
+    </text>
+    <text x="104" y="468" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#1F2937">
+      <tspan x="104" dy="0">没有基线，就无法判断一次优化</tspan>
+      <tspan x="104" dy="24">是“真的变好”还是“只是更复杂”。</tspan>
+    </text>
+  </g>
+  <g id="card-2">
+    <rect x="460" y="190" width="360" height="378" rx="14" fill="#FFFFFF"/>
+    <use data-icon="tabler-outline/target" x="488" y="220" width="28" height="28" fill="#2F80ED" stroke-width="2"/>
+    <text x="530" y="242" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>过程一致</tspan>
+    </text>
+    <text x="488" y="286" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="488" dy="0">时间序列项目里，最危险的问题往往</tspan>
+      <tspan x="488" dy="28">不是模型弱，而是线下验证方式</tspan>
+      <tspan x="488" dy="28">与真实预测流程并不一致。</tspan>
+    </text>
+    <rect x="488" y="404" width="304" height="118" rx="10" fill="#EEF2F7"/>
+    <text x="508" y="438" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>结论</tspan>
+    </text>
+    <text x="508" y="468" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#1F2937">
+      <tspan x="508" dy="0">递推预测、协变量可见性和时间切分</tspan>
+      <tspan x="508" dy="24">必须和真实提交场景保持一致。</tspan>
+    </text>
+  </g>
+  <g id="card-3">
+    <rect x="864" y="190" width="360" height="378" rx="14" fill="#FFFFFF"/>
+    <use data-icon="tabler-outline/git-branch" x="892" y="220" width="28" height="28" fill="#2F80ED" stroke-width="2"/>
+    <text x="934" y="242" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>实验纪律</tspan>
+    </text>
+    <text x="892" y="286" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+      <tspan x="892" dy="0">真正让这个项目形成价值的，不只是</tspan>
+      <tspan x="892" dy="28">分数本身，而是每次只改一个因子、</tspan>
+      <tspan x="892" dy="28">保留版本和结论记录的方式。</tspan>
+    </text>
+    <rect x="892" y="404" width="304" height="118" rx="10" fill="#EEF2F7"/>
+    <text x="912" y="438" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66">
+      <tspan>结论</tspan>
+    </text>
+    <text x="912" y="468" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#1F2937">
+      <tspan x="912" dy="0">课程项目也可以有接近竞赛项目的</tspan>
+      <tspan x="912" dy="24">实验逻辑与版本管理意识。</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>13</tspan>
+    </text>
+  </g>
+</svg>

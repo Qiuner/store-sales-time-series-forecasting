@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <marker id="flowArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#9CA3AF" />
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="header">
+    <path fill="#163B66" d="M58,54 H58 A2,2 0 0 1 60,56 V108 A2,2 0 0 1 58,110 H58 A2,2 0 0 1 56,108 V56 A2,2 0 0 1 58,54 Z" />
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>整体建模路线</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>BASELINE → FEATURES → VALIDATION FIX → ENSEMBLE → ABLATION</tspan>
+    </text>
+  </g>
+  <g id="process-band">
+    <path fill="#FFFFFF" d="M68,166 H1212 A12,12 0 0 1 1224,178 V272 A12,12 0 0 1 1212,284 H68 A12,12 0 0 1 56,272 V178 A12,12 0 0 1 68,166 Z" />
+    <line x1="250" y1="225" x2="313" y2="225" stroke="#9CA3AF" stroke-width="2" marker-end="url(#flowArrow)" />
+    <line x1="482" y1="225" x2="545" y2="225" stroke="#9CA3AF" stroke-width="2" marker-end="url(#flowArrow)" />
+    <line x1="714" y1="225" x2="777" y2="225" stroke="#9CA3AF" stroke-width="2" marker-end="url(#flowArrow)" />
+    <line x1="946" y1="225" x2="1009" y2="225" stroke="#9CA3AF" stroke-width="2" marker-end="url(#flowArrow)" />
+    <g id="step-1">
+      <circle cx="152" cy="225" r="30" fill="#EEF2F7" />
+      <text x="152" y="233" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>1</tspan>
+      </text>
+      <text x="152" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle">
+        <tspan>建立基线</tspan>
+      </text>
+      <text x="152" y="265" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280" text-anchor="middle">
+        <tspan>先验证能否稳定跑通</tspan>
+      </text>
+    </g>
+    <g id="step-2">
+      <circle cx="384" cy="225" r="30" fill="#EEF2F7" />
+      <text x="384" y="233" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>2</tspan>
+      </text>
+      <text x="384" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle">
+        <tspan>加入特征</tspan>
+      </text>
+      <text x="384" y="265" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280" text-anchor="middle">
+        <tspan>时间因子与外部协变量</tspan>
+      </text>
+    </g>
+    <g id="step-3">
+      <circle cx="616" cy="225" r="30" fill="#EEF2F7" />
+      <text x="616" y="233" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>3</tspan>
+      </text>
+      <text x="616" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle">
+        <tspan>修复验证</tspan>
+      </text>
+      <text x="616" y="265" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280" text-anchor="middle">
+        <tspan>消除多步预测泄漏</tspan>
+      </text>
+    </g>
+    <g id="step-4">
+      <circle cx="848" cy="225" r="30" fill="#EEF2F7" />
+      <text x="848" y="233" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#163B66" text-anchor="middle">
+        <tspan>4</tspan>
+      </text>
+      <text x="848" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle">
+        <tspan>转向集成</tspan>
+      </text>
+      <text x="848" y="265" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280" text-anchor="middle">
+        <tspan>Darts 多序列建模</tspan>
+      </text>
+    </g>
+    <g id="step-5">
+      <circle cx="1080" cy="225" r="30" fill="#163B66" />
+      <text x="1080" y="233" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+        <tspan>5</tspan>
+      </text>
+      <text x="1080" y="188" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle">
+        <tspan>单因子实验</tspan>
+      </text>
+      <text x="1080" y="265" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#6B7280" text-anchor="middle">
+        <tspan>确认真正有效的改动</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="explanation-panels">
+    <path fill="#FFFFFF" d="M68,320 H608 A12,12 0 0 1 620,332 V616 A12,12 0 0 1 608,628 H68 A12,12 0 0 1 56,616 V332 A12,12 0 0 1 68,320 Z" />
+    <path fill="#FFFFFF" d="M672,320 H1212 A12,12 0 0 1 1224,332 V616 A12,12 0 0 1 1212,628 H672 A12,12 0 0 1 660,616 V332 A12,12 0 0 1 672,320 Z" />
+    <text x="88" y="368" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>为什么不是一开始就上复杂模型？</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="18" x="88" y="408">因为课程项目里最重要的不是“堆模型”，而是要明确知道</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="18" x="88" y="438">每一步改动是否真的带来了收益。先建立基线，才能判断</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="18" x="88" y="468">后面引入的时间特征、协变量和集成结构到底有没有意义。</text><line x1="88" y1="458" x2="588" y2="458" stroke="#E6ECF2" stroke-width="1" />
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="500"><tspan fill="#2F80ED" font-weight="800">核心方法论：</tspan><tspan>每次只改一个因子，保留版本与分数记录，</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="17" x="88" y="528">这样最终得到的不是一串脚本，而是一条可解释的实验链路。</text><text x="692" y="368" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="18" font-weight="800" fill="#163B66">
+      <tspan>这条路线最终解决了什么问题？</tspan>
+    </text>
+    <g id="solved-list">
+      <text x="692" y="412" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+        <tspan fill="#2F80ED" font-weight="800">1.</tspan><tspan> 建立最基础可运行方案，避免项目一开始就失控</tspan>
+      </text>
+      <text x="692" y="452" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+        <tspan fill="#2F80ED" font-weight="800">2.</tspan><tspan> 把验证流程改成与真实预测一致，修正线下乐观偏差</tspan>
+      </text>
+      <text x="692" y="492" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+        <tspan fill="#2F80ED" font-weight="800">3.</tspan><tspan> 通过 Darts 集成显著提升比分，同时保留实验可追踪性</tspan>
+      </text>
+      <text x="692" y="532" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" fill="#1F2937">
+        <tspan fill="#2F80ED" font-weight="800">4.</tspan><tspan> 通过单因子消融确认 lag、节假日和 transactions 的边际价值</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>03</tspan>
+    </text>
+  </g>
+</svg>

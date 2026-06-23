@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA"/>
+  <g id="header">
+    <rect x="56" y="54" width="4" height="56" rx="2" fill="#163B66"/>
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>版本演进路径</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>FROM BASELINE TO DARTS ENSEMBLE · VERSION TRACK</tspan>
+    </text>
+  </g>
+  <g id="chartArea">
+    <!-- chart-plot-area: 118,240,1164,534 -->
+    <line x1="118" y1="386" x2="1164" y2="386" stroke="#D9E1EA" stroke-width="10" stroke-linecap="round"/>
+    <line x1="118" y1="386" x2="1068" y2="386" stroke="#163B66" stroke-width="10" stroke-linecap="round"/>
+    <g id="milestones">
+      <g id="m1">
+        <circle cx="154" cy="386" r="18" fill="#FFFFFF" stroke="#163B66" stroke-width="4"/>
+        <text x="154" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" font-weight="800" fill="#163B66" text-anchor="middle"><tspan>v1</tspan></text>
+        <text x="154" y="348" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>LinearRegression</tspan></text>
+        <text x="154" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle"><tspan>最简单基线</tspan></text>
+      </g>
+      <g id="m2">
+        <circle cx="274" cy="386" r="18" fill="#FFFFFF" stroke="#163B66" stroke-width="4"/>
+        <text x="274" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" font-weight="800" fill="#163B66" text-anchor="middle"><tspan>v2</tspan></text>
+        <text x="274" y="340" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>Moving Average</tspan></text>
+        <text x="274" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle"><tspan>0.47815</tspan></text>
+      </g>
+      <g id="m3">
+        <circle cx="394" cy="386" r="18" fill="#FFFFFF" stroke="#163B66" stroke-width="4"/>
+        <text x="394" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" font-weight="800" fill="#163B66" text-anchor="middle"><tspan>v3</tspan></text>
+        <text x="394" y="348" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>MA + Ridge</tspan></text>
+        <text x="394" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle"><tspan>0.44476</tspan></text>
+      </g>
+      <g id="m4">
+        <circle cx="534" cy="386" r="18" fill="#FFFFFF" stroke="#163B66" stroke-width="4"/>
+        <text x="534" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" font-weight="800" fill="#163B66" text-anchor="middle"><tspan>v4</tspan></text>
+        <text x="534" y="340" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>LightGBM</tspan></text>
+        <text x="534" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#D64545" text-anchor="middle"><tspan>线上失真</tspan></text>
+      </g>
+      <g id="m5">
+        <circle cx="674" cy="386" r="18" fill="#FFFFFF" stroke="#163B66" stroke-width="4"/>
+        <text x="674" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" font-weight="800" fill="#163B66" text-anchor="middle"><tspan>v5</tspan></text>
+        <text x="674" y="348" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>Recursive LGBM</tspan></text>
+        <text x="674" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle"><tspan>修复泄漏</tspan></text>
+      </g>
+      <g id="m6">
+        <circle cx="844" cy="386" r="20" fill="#FFFFFF" stroke="#2F80ED" stroke-width="5"/>
+        <text x="844" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="12" font-weight="800" fill="#2F80ED" text-anchor="middle"><tspan>v6</tspan></text>
+        <text x="844" y="340" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>Darts Ensemble</tspan></text>
+        <text x="844" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#2F80ED" font-weight="800" text-anchor="middle"><tspan>0.38022</tspan></text>
+      </g>
+      <g id="m7">
+        <circle cx="1068" cy="386" r="24" fill="#163B66"/>
+        <text x="1068" y="392" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle"><tspan>v7.3</tspan></text>
+        <text x="1068" y="340" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="16" font-weight="800" fill="#1F2937" text-anchor="middle"><tspan>Core Holidays</tspan></text>
+        <text x="1068" y="432" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" fill="#2F80ED" font-weight="800" text-anchor="middle"><tspan>0.38005</tspan></text>
+      </g>
+    </g>
+  </g>
+  <g id="analysis-boxes">
+    <rect x="56" y="486" width="352" height="138" rx="12" fill="#FFFFFF"/>
+    <rect x="464" y="486" width="352" height="138" rx="12" fill="#FFFFFF"/>
+    <rect x="872" y="486" width="352" height="138" rx="12" fill="#FFFFFF"/>
+    <text x="84" y="526" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#163B66">
+      <tspan>阶段一：基线建立</tspan>
+    </text>
+    <text x="84" y="560" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan x="84" dy="0">v1-v3 的作用是快速确认</tspan>
+      <tspan x="84" dy="26">统计基线与外部协变量是否有价值。</tspan>
+    </text>
+    <text x="492" y="526" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#163B66">
+      <tspan>阶段二：问题修复</tspan>
+    </text>
+    <text x="492" y="560" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan x="492" dy="0">v4-v5 的重点不是提分，</tspan>
+      <tspan x="492" dy="26">而是修正多步预测泄漏。</tspan>
+    </text>
+    <text x="900" y="526" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="17" font-weight="800" fill="#163B66">
+      <tspan>阶段三：主线优化</tspan>
+    </text>
+    <text x="900" y="560" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" fill="#1F2937">
+      <tspan x="900" dy="0">v6 以后围绕集成结构、节假日、</tspan>
+      <tspan x="900" dy="26">lags 和 transactions 做单因子实验。</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>04</tspan>
+    </text>
+  </g>
+</svg>

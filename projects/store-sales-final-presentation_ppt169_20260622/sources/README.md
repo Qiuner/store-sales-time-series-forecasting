@@ -32,8 +32,6 @@
 - `XGBoost`
 - 分层移动平均基线（非机器学习模型）
 
-和 XGBoost 都是基于决策树的梯度提升模型，适合处理表格型牛持征。在这个项目里，我把时间序列任务转成监督学习任务，再用它们去学习滞后特征、促销、交易量和节假日对销量的影"LightGBM响。
-
 ## Data Cleaning Overview
 
 当前各版本都做了一定程度的数据清洗，但强度差异很大。越往后的主线版本，清洗和缺失处理越完整。
@@ -128,10 +126,6 @@
 - Kaggle public score: `0.38022`
 - 特点: 当前主线高分方案，但训练和预测耗时明显更长
 
-我把时间序列预测转成了监督学习问题。具体做法是，对每个门店和品类构造滞后特征、节假日特征、促销特征和外部协变量，然后把某一天的销量作为预测目标。i这样每个日期样本都变成一行表格数据，最后再用“我把时间序列预测转成了监督学习问题。具体做法是，对每个门店和品类构造滞LightGBM 和 XGBoost 这类树模型进行训练和预测。
-
-等历史销量描述时间依赖关系;第二类是节假日特征，用节日和事件信息刻画特殊日“我主要构造了四类特征。第一类是滞后特征，用过去1天、7天、28天、365天期冲击;第三类是促销特征，直接使用onpromotion 表示促销强度;第四类是外部协变量，比如transactions、oil和门店静态属性，用来补充客流、经济环境和门店差异信息。”
-
 ### `version6.1`
 
 - 核心方案: `version6 + 加权融合`
@@ -207,6 +201,7 @@
 ## Files
 
 - [data_dictionary.md](D:/Code/store-sales-time-series-forecasting/data_dictionary.md): 数据表和字段说明
+- [storesales-1.ipynb](D:/Code/store-sales-time-series-forecasting/storesales-1.ipynb): 参考 notebook
 
 ## Latest Scores
 

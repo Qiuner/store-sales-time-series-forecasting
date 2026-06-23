@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#163B66" />
+      <stop offset="100%" stop-color="#2F80ED" />
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="background">
+    <rect x="54" y="52" width="1172" height="2" fill="#163B66" fill-opacity="0.12" />
+    <rect x="54" y="664" width="1172" height="1" fill="#163B66" fill-opacity="0.12" />
+    <circle cx="1088" cy="128" r="92" fill="#2F80ED" fill-opacity="0.05" />
+    <circle cx="182" cy="588" r="118" fill="#163B66" fill-opacity="0.04" />
+  </g>
+  <g id="cover-header">
+    
+  <g transform="translate(58, 72) scale(1.25)" fill="none" stroke="#163B66" stroke-width="2">
+    <path d="M9 12v-4" />
+    <path d="M15 12v-2" />
+    <path d="M12 12v-1" />
+    <path d="M3 4h18" />
+    <path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-10" />
+    <path d="M12 16v4" />
+    <path d="M9 20h6" />
+  </g>
+    <text x="102" y="94" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="20" font-weight="700" fill="#163B66">
+      <tspan>Store Sales Forecasting</tspan>
+    </text>
+    <text x="1096" y="94" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" font-weight="700" fill="#6B7280" text-anchor="end">
+      <tspan>Kaggle 课程项目 · Time Series</tspan>
+    </text>
+  </g>
+  <g id="hero-metric">
+    <text x="640" y="266" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="128" font-weight="800" fill="url(#heroGrad)" text-anchor="middle">
+      <tspan>0.38005</tspan>
+    </text>
+    <text x="640" y="304" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="700" fill="#6B7280" letter-spacing="2" text-anchor="middle">
+      <tspan>BEST KAGGLE PUBLIC SCORE</tspan>
+    </text>
+  </g>
+  <g id="title-block">
+    <text x="640" y="404" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="50" font-weight="800" fill="#1F2937" text-anchor="middle">
+      <tspan>Store Sales - Time Series Forecasting</tspan>
+    </text>
+    <text x="640" y="452" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="24" fill="#1F2937" text-anchor="middle">
+      <tspan>从统计基线到多模型时间序列集成的课程项目迭代</tspan>
+    </text>
+  </g>
+  <g id="summary-ribbon">
+    <path fill="#FFFFFF" d="M364,500 H916 A36,36 0 0 1 952,536 V536 A36,36 0 0 1 916,572 H364 A36,36 0 0 1 328,536 V536 A36,36 0 0 1 364,500 Z" />
+    <line x1="536" y1="516" x2="536" y2="556" stroke="#D9E1EA" stroke-width="1" />
+    <line x1="744" y1="516" x2="744" y2="556" stroke="#D9E1EA" stroke-width="1" />
+    <text x="432" y="530" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" text-anchor="middle">
+      <tspan>主线方案</tspan>
+    </text>
+    <text x="432" y="554" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66" text-anchor="middle">
+      <tspan>Darts + LGBM + XGB</tspan>
+    </text>
+    <text x="640" y="530" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" text-anchor="middle">
+      <tspan>最佳版本</tspan>
+    </text>
+    <text x="640" y="554" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="17" font-weight="800" fill="#163B66" text-anchor="middle">
+      <tspan>version7.3</tspan>
+    </text>
+    <text x="848" y="530" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" text-anchor="middle">
+      <tspan>汇报主题</tspan>
+    </text>
+    <text x="848" y="554" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="16" font-weight="800" fill="#163B66" text-anchor="middle">
+      <tspan>时间序列预测实验迭代</tspan>
+    </text>
+  </g>
+  <g id="footer">
+    <text x="60" y="632" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#6B7280">
+      <tspan>期末大作业答辩汇报</tspan>
+    </text>
+    <text x="60" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="15" fill="#6B7280">
+      <tspan>2026-06-22</tspan>
+    </text>
+    <text x="1220" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>01</tspan>
+    </text>
+  </g>
+</svg>

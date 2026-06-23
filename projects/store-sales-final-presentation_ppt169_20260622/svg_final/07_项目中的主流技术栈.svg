@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#F7F8FA" />
+  <g id="header">
+    <path fill="#163B66" d="M58,54 H58 A2,2 0 0 1 60,56 V108 A2,2 0 0 1 58,110 H58 A2,2 0 0 1 56,108 V56 A2,2 0 0 1 58,54 Z" />
+    <text x="78" y="88" font-family="Georgia, &quot;Microsoft YaHei&quot;, serif" font-size="34" font-weight="800" fill="#1F2937">
+      <tspan>项目中的主流技术栈</tspan>
+    </text>
+    <text x="78" y="116" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.4">
+      <tspan>PYTHON · PANDAS / NUMPY · LIGHTGBM / XGBOOST · DARTS / SCIKIT-LEARN</tspan>
+    </text>
+  </g>
+  <g id="card-python">
+    <path fill="#FFFFFF" d="M70,170 H316 A14,14 0 0 1 330,184 V368 A14,14 0 0 1 316,382 H70 A14,14 0 0 1 56,368 V184 A14,14 0 0 1 70,170 Z" />
+    
+  <g transform="translate(84, 198) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M7 8l-4 4l4 4" />
+    <path d="M17 8l4 4l-4 4" />
+    <path d="M14 4l-4 16" />
+  </g>
+    <text x="126" y="220" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>Python</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="84" y="264">整体实验与建模语言，负责</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="84" y="288">数据处理、训练、预测、</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="84" y="312">提交导出与版本迭代。</text></g>
+  <g id="card-data">
+    <path fill="#FFFFFF" d="M362,170 H608 A14,14 0 0 1 622,184 V368 A14,14 0 0 1 608,382 H362 A14,14 0 0 1 348,368 V184 A14,14 0 0 1 362,170 Z" />
+    
+  <g transform="translate(376, 198) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M4 6a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" />
+    <path d="M4 6v6a8 3 0 0 0 16 0v-6" />
+    <path d="M4 12v6a8 3 0 0 0 16 0v-6" />
+  </g>
+    <text x="418" y="220" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>pandas / numpy</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="376" y="264">负责表格清洗、时间字段转换、</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="376" y="288">缺失值补齐、插值、分组聚合</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="376" y="312">以及基础数值运算。</text></g>
+  <g id="card-models">
+    <path fill="#FFFFFF" d="M654,170 H900 A14,14 0 0 1 914,184 V368 A14,14 0 0 1 900,382 H654 A14,14 0 0 1 640,368 V184 A14,14 0 0 1 654,170 Z" />
+    
+  <g transform="translate(668, 198) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M5 6a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1l0 -12" />
+    <path d="M9 9h6v6h-6l0 -6" />
+    <path d="M3 10h2" />
+    <path d="M3 14h2" />
+    <path d="M10 3v2" />
+    <path d="M14 3v2" />
+    <path d="M21 10h-2" />
+    <path d="M21 14h-2" />
+    <path d="M14 21v-2" />
+    <path d="M10 21v-2" />
+  </g>
+    <text x="710" y="220" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>LightGBM / XGBoost</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="668" y="264">作为主力树模型，负责处理</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="668" y="288">lag 特征、非线性关系和</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="668" y="312">最终多分支融合。</text></g>
+  <g id="card-ts">
+    <path fill="#FFFFFF" d="M946,170 H1210 A14,14 0 0 1 1224,184 V368 A14,14 0 0 1 1210,382 H946 A14,14 0 0 1 932,368 V184 A14,14 0 0 1 946,170 Z" />
+    
+  <g transform="translate(960, 198) scale(1.16667)" fill="none" stroke="#2F80ED" stroke-width="2">
+    <path d="M12 4l-8 4l8 4l8 -4l-8 -4" />
+    <path d="M4 12l8 4l8 -4" />
+    <path d="M4 16l8 4l8 -4" />
+  </g>
+    <text x="1002" y="220" font-family="Consolas, &quot;Courier New&quot;, monospace" font-size="20" font-weight="800" fill="#1F2937">
+      <tspan>Darts / scikit-learn</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="960" y="264">统一多序列时间序列接口，</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="960" y="288">并负责编码、缩放、流水线与</text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="16" x="960" y="312">协变量管理。</text></g>
+  <g id="bottom-summary">
+    <path fill="#FFFFFF" d="M70,426 H1210 A14,14 0 0 1 1224,440 V574 A14,14 0 0 1 1210,588 H70 A14,14 0 0 1 56,574 V440 A14,14 0 0 1 70,426 Z" />
+    <text x="88" y="468" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="19" font-weight="800" fill="#163B66">
+      <tspan>为什么说这些是“主流技术”？</tspan>
+    </text>
+    <text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="18" x="88" y="510"><tspan>因为在表格型时间序列竞赛和实际业务预测任务里，常见路线通常就是：</tspan>
+      <tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">Python</tspan>
+      <tspan> 负责实验环境，</tspan>
+      <tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">pandas / numpy</tspan>
+      <tspan> 负责数据处理，</tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="18" x="88" y="538"><tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">LightGBM / XGBoost</tspan><tspan> 负责强表格基线，</tspan><tspan font-family="Consolas, &quot;Courier New&quot;, monospace" fill="#2F80ED" font-weight="800">Darts</tspan><tspan> 负责更结构化的时间序列接口。</tspan></tspan>
+      </text><text font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" fill="#1F2937" font-size="18" x="88" y="566">这使得课程作业的技术选择，与主流竞赛和工程实践之间是连贯的，而不是脱节的。</text></g>
+  <g id="footer">
+    <text x="1218" y="656" font-family="&quot;Microsoft YaHei&quot;, Arial, sans-serif" font-size="13" fill="#9CA3AF" text-anchor="end">
+      <tspan>07</tspan>
+    </text>
+  </g>
+</svg>
